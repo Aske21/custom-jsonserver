@@ -12,7 +12,7 @@
     "_postinstall": "husky install",
     "test": "",
     "start": "babel-node -- src/cli/bin db.json -r routes.json",
-    "lint": "",
+    "lint": "eslint . --ignore-path .gitignore",
     "fix": "npm run lint -- --fix",
     "build": "babel src -d lib",
     "toc": "markdown-toc -i README.md",
