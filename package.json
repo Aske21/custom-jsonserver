@@ -13,7 +13,7 @@
     "test": "npm run build && cross-env NODE_ENV=test jest && npm run lint",
     "start": "babel-node -- src/cli/bin db.json -r routes.json",
     "lint": "eslint . --ignore-path .gitignore",
-    "fix": "npm run lint -- --fix",
+    "fix": "",
     "build": "babel src -d lib",
     "toc": "markdown-toc -i README.md",
     "postversion": "git push && git push --tags",
