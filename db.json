@@ -1,0 +1,1105 @@
+{
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Noud",
+      "surname": "Siereveld",
+      "username": "tinyfrog205",
+      "email": "noud.siereveld@example.com",
+      "password": "zyvfuw"
+    },
+    {
+      "id": 1,
+      "name": "Paula",
+      "surname": "Lopez",
+      "username": "beautifulfish847",
+      "email": "paula.lopez@example.com",
+      "password": "waxwftm"
+    },
+    {
+      "id": 2,
+      "name": "Paige",
+      "surname": "Zhang",
+      "username": "orangerabbit187",
+      "email": "paige.zhang@example.com",
+      "password": "bbpclo"
+    },
+    {
+      "id": 3,
+      "name": "Johnny",
+      "surname": "Hawkins",
+      "username": "whiteswan309",
+      "email": "johnny.hawkins@example.com",
+      "password": "apxfd"
+    },
+    {
+      "id": 4,
+      "name": "Fred",
+      "surname": "Große",
+      "username": "brownostrich605",
+      "email": "fred.grosse@example.com",
+      "password": "shecxi"
+    },
+    {
+      "id": 5,
+      "name": "Marcus",
+      "surname": "Jones",
+      "username": "greenswan864",
+      "email": "marcus.jones@example.com",
+      "password": "qvrnkgk"
+    },
+    {
+      "id": 6,
+      "name": "Alisa",
+      "surname": "Luoma",
+      "username": "brownmeercat631",
+      "email": "alisa.luoma@example.com",
+      "password": "quiprjqso"
+    },
+    {
+      "id": 7,
+      "name": "Javier",
+      "surname": "Rivera",
+      "username": "browntiger975",
+      "email": "javier.rivera@example.com",
+      "password": "ejuymvp"
+    },
+    {
+      "id": 8,
+      "name": "Latife",
+      "surname": "Tazegül",
+      "username": "lazykoala514",
+      "email": "latife.tazegul@example.com",
+      "password": "rkfdv"
+    },
+    {
+      "id": 9,
+      "name": "Virginia",
+      "surname": "Borchardt",
+      "username": "beautifulpanda638",
+      "email": "virginia.borchardt@example.com",
+      "password": "iptpyrcxbp"
+    },
+    {
+      "name": "Asim",
+      "surname": "Veledarević",
+      "email": "veledarevica@gmail.com",
+      "password": "12345",
+      "id": 10
+    },
+    {
+      "email": "noud.siereveld@example.com",
+      "password": "zyvfuw",
+      "id": 11
+    },
+    {
+      "email": "noud.siereveld@example.com",
+      "password": "zyvfuw",
+      "id": 12
+    }
+  ],
+  "posts": [
+    {
+      "id": 561,
+      "title": "How to use combinations of sets as test data",
+      "author": "Marcus",
+      "body": "<p>I would like to test a function with a tuple from a set of fringe cases and normal values. For example, while testing a function which returns <code>true</code> whenever given three lengths that form a valid triangle, I would have specific cases, negative / small / large numbers, values close-to being overflowed, etc.; what is more, main aim is to generate combinations of these values, <em>with</em> or <em>without</em> repetition, in order to get a set of test data.</p>\n\n<pre><code>(inf,0,-1), (5,10,1000), (10,5,5), (0,-1,5), (1000,inf,inf),\n...\n</code></pre>\n\n<blockquote>\n  <p><em>As a note: I actually know the answer to this, but it might be helpful for others, and a challenge for people here! --will post my answer later on.</em></p>\n</blockquote>\n",
+      "upVoteCount": 27,
+      "downVoteCount": 2
+    },
+    {
+      "id": 1042,
+      "title": "Why doesn&#39;t SQL Full Text Indexing return results for words containing #?",
+      "author": "Javier",
+      "body": "<p>For instance, my query is like the following using SQL Server 2005:</p>\n\n<pre><code>SELECT * FROM Table WHERE FREETEXT(SearchField, 'c#') \n</code></pre>\n\n<p>I have a full text index defined to use the column SearchField which returns results when using:</p>\n\n<pre><code>SELECT * FROM Table WHERE SearchField LIKE '%c#%'\n</code></pre>\n\n<p>I believe # is a special letter, so how do I allow FREETEXT to work correctly for the query above?</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1451,
+      "title": "What is the best way to handle multiple permission types?",
+      "author": "Marcus",
+      "body": "<p>I often encounter the following scenario where I need to offer many different types of permissions. I primarily use ASP.NET / VB.NET with SQL Server 2000.</p>\n<p><strong>Scenario</strong></p>\n<p>I want to offer a dynamic permission system that can work on different parameters. Let's say that I want to give either a department or just a specific person access to an application. And pretend that we have a number of applications that keeps growing.</p>\n<p>In the past, I have chosen one of the following two ways that I know to do this.</p>\n<ol>\n<li><p>Use a single permission table with special columns that are used for\ndetermining a how to apply the parameters. The special columns in\nthis example are <code>TypeID</code> and <code>TypeAuxID</code>. The SQL would look something\nlike this.</p>\n<pre><code>SELECT COUNT(PermissionID)\nFROM application_permissions\nWHERE\n(TypeID = 1 AND TypeAuxID = @UserID) OR\n(TypeID = 2 AND TypeAuxID = @DepartmentID)\nAND ApplicationID = 1\n</code></pre>\n</li>\n<li><p>Use a mapping table for each type of permission, then joining them\nall together.</p>\n<pre><code>SELECT COUNT(perm.PermissionID)\nFROM application_permissions perm\nLEFT JOIN application_UserPermissions emp\nON perm.ApplicationID = emp.ApplicationID\nLEFT JOIN application_DepartmentPermissions dept\nON perm.ApplicationID = dept.ApplicationID\nWHERE q.SectionID=@SectionID\n  AND (emp.UserID=@UserID OR dept.DeptID=@DeptID OR\n (emp.UserID IS NULL AND dept.DeptID IS NULL)) AND ApplicationID = 1\nORDER BY q.QID ASC\n</code></pre>\n</li>\n</ol>\n<p><strong>My Thoughts</strong></p>\n<p>I hope that the examples make sense. I cobbled them together.</p>\n<p>The first example requires less work, but neither of them feel like the best answer. Is there a better way to handle this?</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1829,
+      "title": "How do I make a menu that does not require the user to press [enter] to make a selection?",
+      "author": "Johnny",
+      "body": "<p>I've got a menu in Python. That part was easy. I'm using <code>raw_input()</code> to get the selection from the user. </p>\n\n<p>The problem is that <code>raw_input</code> (and input) require the user to press <kbd>Enter</kbd> after they make a selection. Is there any way to make the program act immediately upon a keystroke? Here's what I've got so far:</p>\n\n<pre><code>import sys\nprint \"\"\"Menu\n1) Say Foo\n2) Say Bar\"\"\"\nanswer = raw_input(\"Make a selection&gt; \")\n\nif \"1\" in answer: print \"foo\"\nelif \"2\" in answer: print \"bar\"\n</code></pre>\n\n<p>It would be great to have something like</p>\n\n<pre><code>print menu\nwhile lastKey = \"\":\n    lastKey = check_for_recent_keystrokes()\nif \"1\" in lastKey: #do stuff...\n</code></pre>\n",
+      "upVoteCount": 27,
+      "downVoteCount": 2
+    },
+    {
+      "id": 1908,
+      "title": "How to map a latitude/longitude to a distorted map?",
+      "author": "Javier",
+      "body": "<p>I have a bunch of latitude/longitude pairs that map to known x/y coordinates on a (geographically distorted) map.</p>\n\n<p>Then I have one more latitude/longitude pair. I want to plot it on the map as best is possible. How do I go about doing this?</p>\n\n<p>At first I decided to create a system of linear equations for the three nearest lat/long points and compute a transformation from these, but this doesn't work well at all. Since that's a linear system, I can't use more nearby points either.</p>\n\n<p>You can't assume North is up: all you have is the existing lat/long->x/y mappings.</p>\n\n<p>EDIT: it's not a Mercator projection, or anything like that. It's arbitrarily distorted for readability (think subway map). I want to use only the nearest 5 to 10 mappings so that distortion on other parts of the map doesn't affect the mapping I'm trying to compute.</p>\n\n<p>Further, the entire map is in a very small geographical area so there's no need to worry about the globe--flat-earth assumptions are good enough.</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2214,
+      "title": "What&#39;s the best way to implement BDD/TDD in .NET 2.0?",
+      "author": "Virginia",
+      "body": "<p>I'm looking to add a testing suite to my application, however I can't move to the newer testing frameworks for .NET 3.5. </p>\n\n<p>Does anyone have a suggestion about good testing frameworks to use?</p>\n",
+      "upVoteCount": 27,
+      "downVoteCount": 2
+    },
+    {
+      "id": 2711,
+      "title": "What sites offer free, quality web site design templates?",
+      "author": "Alisa",
+      "body": "<p>Let's aggregate a list of free quality web site design templates. There are a million of these sites out there, but most are repetitive and boring. </p>\n\n<p>I'll start with <a href=\"http://www.freecsstemplates.org/\" rel=\"noreferrer\">freeCSStemplates.org</a></p>\n\n<p>I also think other sites should follow some sort of standards, for example here are freeCSStemplates standards</p>\n\n<ul>\n<li>Released for FREE under the Creative Commons Attribution 2.5 license </li>\n<li>Very lightweight in terms of images </li>\n<li>Tables-free (ie. they use no tables for layout purposes) </li>\n<li>W3C standards compliant and valid (XHTML Strict) </li>\n<li>Provided with public domain photos, generously provided by PDPhoto.org and Wikimedia Commons </li>\n</ul>\n",
+      "upVoteCount": 27,
+      "downVoteCount": 2
+    },
+    {
+      "id": 2780,
+      "title": "Converting ARBG to RGB with alpha blending",
+      "author": "Marcus",
+      "body": "<p>Let's say that we have an ARGB color:</p>\n\n<pre><code>Color argb = Color.FromARGB(127, 69, 12, 255); //Light Urple.\n</code></pre>\n\n<p>When this is painted on top of an existing color, the colors will blend. So when it is blended with white, the resulting color is <code>Color.FromARGB(255, 162, 133, 255);</code></p>\n\n<p>The solution should work like this:</p>\n\n<pre><code>Color blend = Color.White; \nColor argb = Color.FromARGB(127, 69, 12, 255); //Light Urple.      \nColor rgb = ToRGB(argb, blend); //Same as Color.FromARGB(255, 162, 133, 255);\n</code></pre>\n\n<p>What is <code>ToRGB</code>'s implementation?      </p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 4347,
+      "title": "Where is a good place to start programming GUIs for windows?",
+      "author": "Javier",
+      "body": "<p>I have experience writing console and network client/server applications in C and C++, but I know next to nothing about using the win32 visual API, MFC, Qt, wxWidgets, etc.  Where is a good place to start, and what method should I specialize in, so as to be future ready and robust?</p>\n",
+      "upVoteCount": 28,
+      "downVoteCount": 3
+    },
+    {
+      "id": 4850,
+      "title": "C# and Arrow Keys",
+      "author": "Latife",
+      "body": "<p>I am new to C# and am doing some work in an existing application. I have a DirectX viewport that has components in it that I want to be able to position using arrow keys.</p>\n\n<p>Currently I am overriding ProcessCmdKey and catching arrow input and send an OnKeyPress event. This works, but I want to be able to use modifiers(<strong><kbd>ALT</kbd>+<kbd>CTRL</kbd>+<kbd>SHIFT</kbd></strong>). As soon as I am holding a modifier and press an arrow no events are triggered that I am listening to.</p>\n\n<p>Does anyone have any ideas or suggestions on where I should go with this?</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5527,
+      "title": "Is there a real benefit of using J#?",
+      "author": "Virginia",
+      "body": "<p>I just saw a <a href=\"https://stackoverflow.com/questions/5516/what-happened-to-all-of-the-java-developers-how-can-i-get-started-in-net#5522\">comment of suggesting J#</a>, and it made me wonder... is there a real, beneficial use of J# over Java?  So, my feeling is that the only reason you would even consider using J# is that management has decreed that the company should jump on the Java bandwagon... and the .NET bandwagon.  If you use J#, you are effectively losing the biggest benefit of picking Java... rich cross platform support.  Sure there is Mono, but it's not as richly supported or as full featured right?  I remember hearing Forms are not fully (perhaps at all) supported.</p>\n\n<p>I'm not trying to bash .NET here, I'm just saying, if you are going to go the Microsoft route, why not just use C#?  If you are going to go the Java route, why would J# enter the picture?</p>\n\n<p>I'm hoping to find some real world cases here, so please especially respond if you've ACTUALLY used J# in a REAL project, and why.</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5916,
+      "title": "How do you feel about code folding?",
+      "author": "Virginia",
+      "body": "<p>For those of you in the Visual Studio environment, how do you feel about wrapping any of your code in #regions?  (or if any other IDE has something similar...)</p>\n",
+      "upVoteCount": 30,
+      "downVoteCount": 5
+    },
+    {
+      "id": 8042,
+      "title": "Extension interface patterns",
+      "author": "Javier",
+      "body": "<p>The new extensions in .Net 3.5 allow functionality to be split out from interfaces.</p>\n\n<p>For instance in .Net 2.0</p>\n\n<pre><code>public interface IHaveChildren {\n    string ParentType { get; }\n    int ParentId { get; }\n\n    List&lt;IChild&gt; GetChildren()\n}\n</code></pre>\n\n<p>Can (in 3.5) become:</p>\n\n<pre><code>public interface IHaveChildren {\n    string ParentType { get; }\n    int ParentId { get; }\n}\n\npublic static class HaveChildrenExtension {\n    public static List&lt;IChild&gt; GetChildren( this IHaveChildren ) {\n        //logic to get children by parent type and id\n        //shared for all classes implementing IHaveChildren \n    }\n}\n</code></pre>\n\n<p>This seems to me to be a better mechanism for many interfaces.  They no longer need an abstract base to share this code, and functionally the code works the same. This could make the code more maintainable and easier to test.</p>\n\n<p>The only disadvantage being that an abstract bases implementation can be virtual, but can that be worked around (would an instance method hide an extension method with the same name? would it be confusing code to do so?)</p>\n\n<p>Any other reasons not to regularly use this pattern?</p>\n\n<hr>\n\n<p>Clarification:</p>\n\n<p>Yeah, I see the tendency with extension methods is to end up with them everywhere. I'd be particularly careful having any on .Net value types without a great deal of peer review (I think the only one we have on a string is a <code>.SplitToDictionary()</code> - similar to <code>.Split()</code> but taking a key-value delimiter too)</p>\n\n<p>I think there's a whole best practice debate there ;-)</p>\n\n<p>(Incidentally: DannySmurf, your PM sounds scary.)</p>\n\n<p>I'm specifically asking here about using extension methods where previously we had interface methods.</p>\n\n<hr>\n\n<p>I'm trying to avoid lots of levels of abstract base classes - the classes implementing these models mostly already have base classes. I think this model could be more maintainable and less overly-coupled than adding further object hierarchies.</p>\n\n<p>Is this what MS has done to IEnumerable and IQueryable for Linq?</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11500,
+      "title": "Speeding up an ASP.Net Web Site or Application",
+      "author": "Fred",
+      "body": "<p>I have an Ajax.Net enabled ASP.Net 2.0 web site. Hosting for both the site and the database are out of my control as is the database's schema. In testing on hardware I do control the site performs well however on the client's hardware, there are noticeable delays when reloading or changing pages. </p>\n\n<p>What I would like to do is make my application as compact and speedy as possible when I deliver it. One idea is to set expiration dates for all of the site's static resources so they aren't recalled on page loads. By resources I mean images, linked style sheets and JavaScript source files. Is there an easy way to do this?</p>\n\n<p>What other ways are there to optimize a .Net web site?</p>\n\n<p>UPDATE: \nI've run YSlow on the site and the areas where I am getting hit the hardest are in the number of JavaScript and Style Sheets being loaded (23 JS files and 5 style sheets). All but one (the main style sheet) has been inserted by Ajax.net and Asp. Why so many? </p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14389,
+      "title": "Regex and unicode",
+      "author": "Javier",
+      "body": "<p>I have a script that parses the filenames of TV episodes (show.name.s01e02.avi for example), grabs the episode name (from the www.thetvdb.com API) and automatically renames them into something nicer (Show Name - [01x02].avi)</p>\n\n<p>The script works fine, that is until you try and use it on files that have Unicode show-names (something I never really thought about, since all the files I have are English, so mostly pretty-much all fall within <code>[a-zA-Z0-9'\\-]</code>)</p>\n\n<p>How can I allow the regular expressions to match accented characters and the likes? Currently the regex's config section looks like..</p>\n\n<pre><code>config['valid_filename_chars'] = \"\"\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@£$%^&amp;*()_+=-[]{}\"'.,&lt;&gt;`~? \"\"\"\nconfig['valid_filename_chars_regex'] = re.escape(config['valid_filename_chars'])\n\nconfig['name_parse'] = [\n    # foo_[s01]_[e01]\n    re.compile('''^([%s]+?)[ \\._\\-]\\[[Ss]([0-9]+?)\\]_\\[[Ee]([0-9]+?)\\]?[^\\\\/]*$'''% (config['valid_filename_chars_regex'])),\n    # foo.1x09*\n    re.compile('''^([%s]+?)[ \\._\\-]\\[?([0-9]+)x([0-9]+)[^\\\\/]*$''' % (config['valid_filename_chars_regex'])),\n    # foo.s01.e01, foo.s01_e01\n    re.compile('''^([%s]+?)[ \\._\\-][Ss]([0-9]+)[\\.\\- ]?[Ee]([0-9]+)[^\\\\/]*$''' % (config['valid_filename_chars_regex'])),\n    # foo.103*\n    re.compile('''^([%s]+)[ \\._\\-]([0-9]{1})([0-9]{2})[\\._ -][^\\\\/]*$''' % (config['valid_filename_chars_regex'])),\n    # foo.0103*\n    re.compile('''^([%s]+)[ \\._\\-]([0-9]{2})([0-9]{2,3})[\\._ -][^\\\\/]*$''' % (config['valid_filename_chars_regex'])),\n]\n</code></pre>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14582,
+      "title": "Can I make Subversion + TortoiseSVN case-insensitive for Windows?",
+      "author": "Johnny",
+      "body": "<p>I've been using Subversion for code control with TortoiseSVN to interface with the server for the past few months, and in general it's been going great!  However, occasionally my FoxPro IDE will change the case of a file extension without warning where \"<em>program.prg</em>\" becomes \"<em>program.<strong>PRG</em></strong>\")  TortoiseSVN apparently takes this to mean the first file was removed, becoming flagged as \"missing\" and the second name comes up as \"non-versioned\", wreaking havoc on my ability to track changes to the file.   I understand that Subversion has it origins in the case-sensitive world of *nix but, is there any way to control this behavior in either Subversion or TortoiseSVN to be file name case-insensitive when used with Windows?</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 15681,
+      "title": "Developer Setup for Starting Out with Cocoa/Mac Programming",
+      "author": "Latife",
+      "body": "<p>I'd like to start experimenting with Cocoa and programming for Mac OSX.  I'm not terribly concerned with Objective C syntax/constructs/bheaviors at this point, but more curious as to an efficient setup on in terms of an editor and/or IDE that will get me going quickly.  Is there any IDE even remotely similar to Visual Studio (since that's where I've spent most of my time over the last 7 years) in terms of it's solution/project concept?  Any other tools, tips, suggestions and/or resources to get up and experimenting quickly?  </p>\n\n<p>I'd like to avoid a lot of the intro stuff and get into things like \"If you want to create an Mac desktop application, you can use <i>Acme IDE</i> and set up your project like this.\" </p>\n\n<hr>\n\n<p>I was afraid Xcode was going to be the answer! :P  I tried playing around with that -- literally just getting it off the DVD and just diving in with no idea what to expect (before I even knew that you used Objective C as the language).  I figured, the wise guy that I am, that I could just sort of fumble around and get a simple app working ... wrong.  </p>\n\n<p>@Andrew - Thanks for the insight on those config settings.  Based on my Xcode first impression, I think those may help.</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 16113,
+      "title": "Software for Webserver Log Analysis?",
+      "author": "Alisa",
+      "body": "<p>Can I get some recommendations (preferably with some reasons) for good log analysis software for Apache 2.2 access log files?</p>\n\n<p>I have heard of <a href=\"http://www.webalizer.org/\" rel=\"noreferrer\">Webalizer</a> and <a href=\"http://awstats.sourceforge.net/\" rel=\"noreferrer\">AWStats</a>, but have never really used any of them, and would like to know:</p>\n\n<ul>\n<li>What they can do</li>\n<li>Why they are useful</li>\n<li>Interesting uses for them</li>\n</ul>\n\n<p>Any and all comments and thoughts are welcome.</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    },
+    {
+      "id": 20034,
+      "title": "Is Project Darkstar Realistic?",
+      "author": "Marcus",
+      "body": "<p><a href=\"http://en.wikipedia.org/wiki/Project_Darkstar\" rel=\"nofollow noreferrer\">Project Darkstar</a> was the topic of the monthly <a href=\"http://www.javasig.com/meeting/home.xhtml\" rel=\"nofollow noreferrer\">JavaSIG</a> meeting down at the Google offices in NYC last night.  For those that don't know (probably everyone), Project Darkstar is a framework for massively multiplayer online games that attempts to take care of all of the \"hard stuff.\"  The basic idea is that you write your game server logic in such a way that all operations are broken up into tiny tasks.  You pass these tasks to the Project Darkstar framework which handles distributing them to a specific node in the cluster, any concurrency issues, and finally persisting the data.</p>\n\n<p>Apparently doing this kind of thing is a much different problem for video games than it is for enterprise applications.  Jim Waldo, who gave the lecture, claims that MMO games have a DB read/write ratio of 50/50, whereas enterprise apps are more like 90% read, 10% write.  He also claims that most existing MMOs keep everything in memory exlcusively, and only dump to a DB every 6 hours of so.  This means if a server goes down, you would lose all of the work since the last DB dump.</p>\n\n<p>Now, the project itself sounds really cool, but I don't think the industry will accept it.  First, you have to write your server code in Java.  The client code can be written in anything (Jim claims ActionScript 3 is the most popular, follow by C++), but the server stuff has to be Java.  Sounds good to me, but I really get the impression that everyone in the games industry hates Java.</p>\n\n<p>Second, unlike other industries where developers prefer to use existing frameworks and libraries, the guys in the games industry seem to like to write everything themselves.  Not only that, they like to rewrite everything for every new game they produce.  Things are starting to change where developers are using Havok for physics, Unreal Engine 3 as their platform, etc., but for the most part it looks like everything is still proprietary.</p>\n\n<p>So, are the guys at Project Darkstar just wasting their time?  Can a general framework like this really work for complex games with the performance that is required?  Even if it does work, are game companies willing to use it?</p>\n",
+      "upVoteCount": 27,
+      "downVoteCount": 2
+    },
+    {
+      "id": 20675,
+      "title": "ASP/VBScript - Int() vs CInt()",
+      "author": "Paula",
+      "body": "<p>What is the difference in ASP/VBScript between <code>Int()</code> and <code>CInt()</code>?</p>\n",
+      "upVoteCount": 25,
+      "downVoteCount": 0
+    }
+  ],
+  "comments": [
+    {
+      "id": 589,
+      "postId": 561,
+      "body": "<p>Interesting question!</p>\n\n<p>I would do this by picking combinations, something like the following in python.  The hardest part is probably first pass verification, i.e. <code>if f(1,2,3) returns true</code>, is that a correct result?  Once you have verified that, then this is a good basis for regression testing.</p>\n\n<p>Probably it's a good idea to make a set of test cases that you know will be all true (e.g. 3,4,5 for this triangle case), and a set of test cases that you know will be all false (e.g. 0,1,inf).  Then you can more easily verify the tests are correct.</p>\n\n<pre>\n# xpermutations from http://code.activestate.com/recipes/190465\nfrom xpermutations import *\n\nlengths=[-1,0,1,5,10,0,1000,'inf']\nfor c in xselections(lengths,3):        # or xuniqueselections\n    print c\n</pre>\n\n<pre>\n(-1,-1,-1);\n(-1,-1,0);\n(-1,-1,1);\n(-1,-1,5);\n(-1,-1,10);\n(-1,-1,0);\n(-1,-1,1000);\n(-1,-1,inf);\n(-1,0,-1);\n(-1,0,0);\n...\n</pre>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 794,
+      "postId": 561,
+      "body": "<p>Absolutely, especially dealing with lots of these permutations/combinations I can definitely see that the first pass would be an issue.</p>\n\n<p>Interesting implementation in python, though I wrote a nice one in C and Ocaml based on \"Algorithm 515\" (see below). He wrote his in Fortran as it was common back then for all the \"Algorithm XX\" papers, well, that assembly or c. I had to re-write it and make some small improvements to work with arrays not ranges of numbers. This one does random access, I'm still working on getting some nice implementations of the ones mentioned in Knuth 4th volume fascicle 2. I'll an explanation of how this works to the reader. Though if someone is curious, I wouldn't object to writing something up.</p>\n\n<pre><code>/** [combination c n p x]\n * get the [x]th lexicographically ordered set of [p] elements in [n]\n * output is in [c], and should be sizeof(int)*[p] */\nvoid combination(int* c,int n,int p, int x){\n    int i,r,k = 0;\n    for(i=0;i&lt;p-1;i++){\n        c[i] = (i != 0) ? c[i-1] : 0;\n        do {\n            c[i]++;\n            r = choose(n-c[i],p-(i+1));\n            k = k + r;\n        } while(k &lt; x);\n        k = k - r;\n    }\n    c[p-1] = c[p-2] + x - k;\n}\n</code></pre>\n\n<p>~\"Algorithm 515: Generation of a Vector from the Lexicographical Index\"; Buckles, B. P., and Lybanon, M. ACM Transactions on Mathematical Software, Vol. 3, No. 2, June 1977.</p>\n",
+      "upVoteCount": 17,
+      "downVoteCount": 0
+    },
+    {
+      "id": 13123,
+      "postId": 561,
+      "body": "<p>I think you can do this with the <a href=\"http://blog.donnfelker.com/2008/04/01/NUnit247AndTheRowTestAttributeWithExample.aspx\" rel=\"nofollow noreferrer\">Row Test Attribute</a> (available in MbUnit and later versions of NUnit) where you could specify several sets to populate one unit test.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 79583,
+      "postId": 561,
+      "body": "<p>While it's possible to create lots of test data and see what happens, it's more efficient to try to minimize the data being used.</p>\n\n<p>From a typical QA perspective, you would want to identify different classifications of inputs. Produce a set of input values for each classification and determine the appropriate outputs. </p>\n\n<p>Here's a sample of classes of input values</p>\n\n<ul>\n<li>valid triangles with small numbers such as (1 billion, 2, billion, 2 billion)</li>\n<li>valid triangles with large numbers such as (0.000001, 0.00002, 0.00003)</li>\n<li>valid obtuse triangles that are 'almost'flat such as (10, 10, 19.9999)</li>\n<li>valid acute triangles that are 'almost' flat such as (10, 10, 0000001)</li>\n<li>invalid triangles with at least one negative value</li>\n<li>invalid triangles where the sum of two sides equals the third</li>\n<li>invalid triangles where the sum of two sides is greater than the third</li>\n<li>input values that are non-numeric</li>\n</ul>\n\n<p>...</p>\n\n<p>Once you are satisfied with the list of input classifications for this function, then you can create the actual test data.  Likely, it would be helpful to test all permutations of each item.  (e.g. (2,3,4), (2,4,3), (3,2,4), (3,4,2), (4,2,3), (4,3,2)) Typically, you'll find there are some classifications you missed (such as the concept of inf as an input parameter).</p>\n\n<p>Random data for some period of time may be helpful as well, that can find strange bugs in the code, but is generally not productive.</p>\n\n<p>More likely, this function is being used in some specific context where additional rules are applied.(e.g. only integer values or values must be in 0.01 increments, etc.) These add to the list of classifications of input parameters.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 1
+    },
+    {
+      "id": 170010,
+      "postId": 561,
+      "body": "<p>With the brand new Python 2.6, you have a standard solution with the itertools module that returns the Cartesian product of iterables :</p>\n\n<pre><code>import itertools\n\nprint list(itertools.product([1,2,3], [4,5,6]))\n   [(1, 4), (1, 5), (1, 6),\n   (2, 4), (2, 5), (2, 6),\n   (3, 4), (3, 5), (3, 6)]\n</code></pre>\n\n<p>You can provide a \"repeat\" argument to perform the product with an iterable and itself:</p>\n\n<pre><code>print list(itertools.product([1,2], repeat=3))\n[(1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2),\n(2, 1, 1), (2, 1, 2), (2, 2, 1), (2, 2, 2)]\n</code></pre>\n\n<p>You can also tweak something with combinations as well :</p>\n\n<pre><code>print list(itertools.combinations('123', 2))\n[('1', '2'), ('1', '3'), ('2', '3')]\n</code></pre>\n\n<p>And if order matters, there are permutations :</p>\n\n<pre><code>print list(itertools.permutations([1,2,3,4], 2))\n[(1, 2), (1, 3), (1, 4),\n   (2, 1), (2, 3), (2, 4),\n   (3, 1), (3, 2), (3, 4),\n   (4, 1), (4, 2), (4, 3)]\n</code></pre>\n\n<p>Of course all that cool stuff don't exactly do the same thing, but you can use them in a way or another to solve you problem. </p>\n\n<p>Just remember that you can convert a tuple or a list to a set and vice versa using list(), tuple() and set().</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1047,
+      "postId": 1042,
+      "body": "<p>Quoting a much-replicated help page about Indexing Service query language:</p>\n\n<blockquote>\n  <p>To use specially treated characters such as &amp;, |, ^, #, @, $, (, ), in a query, enclose your query in quotation marks (“).</p>\n</blockquote>\n\n<p>As far as I know, full text search in <code>MSSQL</code> is also done by the Indexing Service, so this might help.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1061,
+      "postId": 1042,
+      "body": "<p>The # char is indexed as punctuation and therefore ignored, so it looks like we'll remove the letter C from our word indexing ignore lists.</p>\n\n<p>Tested it locally after doing that and rebuilding the indexes and I get results!</p>\n\n<p>Looking at using a different word breaker language on the indexed column, so that those special characters aren't ignored.</p>\n\n<p>EDIT: I also found <a href=\"http://www.simple-talk.com/sql/learn-sql-server/sql-server-full-text-search-language-features/\" rel=\"noreferrer\">this information</a>:</p>\n\n<blockquote>\n  <p>c# is indexed as c (if c is not in your noise word list, see more on noise word lists later), but C# is indexed as C# (in SQL 2005 and SQL 2000 running on Win2003 regardless if C or c is in your noise word list). It is not only C# that is stored as C#, but any capital letter followed by #. Conversely, c++ ( and any other lower-cased letter followed by a ++) is indexed as c (regardless of whether c is in your noise word list).</p>\n</blockquote>\n",
+      "upVoteCount": 14,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1459,
+      "postId": 1451,
+      "body": "<p>The way I typically go about coding permission systems is having 6 tables.</p>\n\n<ul>\n<li>Users - this is pretty straight forward it is your typical users table</li>\n<li>Groups - this would be synonymous to your departments</li>\n<li>Roles - this is a table with all permissions generally also including a human readable name and a description</li>\n<li>Users_have_Groups - this is a many-to-many table of what groups a user belongs to</li>\n<li>Users_have_Roles - another many-to-many table of what roles are assigned to an individual user</li>\n<li>Groups_have_Roles - the final many-to-many table of what roles each group has</li>\n</ul>\n\n<p>At the beginning of a users session you would run some logic that pulls out every role they have assigned, either directory or through a group. Then you code against those roles as your security permissions.</p>\n\n<p>Like I said this is what I typically do but your millage may vary.</p>\n",
+      "upVoteCount": 10,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1466,
+      "postId": 1451,
+      "body": "<p>An approach I've used in various applications is to have a generic PermissionToken class which has a changeable Value property.  Then you query the requested application, it tells you which PermissionTokens are needed in order to use it.</p>\n\n<p>For example, the Shipping application might tell you it needs:</p>\n\n<pre><code>new PermissionToken()\n{\n    Target = PermissionTokenTarget.Application,\n    Action = PermissionTokenAction.View,\n    Value = \"ShippingApp\"\n};\n</code></pre>\n\n<p>This can obviously be extended to Create, Edit, Delete etc and, because of the custom Value property, any application, module or widget can define its own required permissions.  YMMV, but this has always been an efficient method for me which I have found to scale well.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1477,
+      "postId": 1451,
+      "body": "<p>I agree with John Downey.</p>\n\n<p>Personally, I sometimes use a flagged enumeration of permissions. This way you can use AND, OR, NOT and XOR bitwise operations on the enumeration's items.</p>\n\n<pre><code>\"[Flags]\npublic enum Permission\n{\n    VIEWUSERS = 1, // 2^0 // 0000 0001\n    EDITUSERS = 2, // 2^1 // 0000 0010\n    VIEWPRODUCTS = 4, // 2^2 // 0000 0100\n    EDITPRODUCTS = 8, // 2^3 // 0000 1000\n    VIEWCLIENTS = 16, // 2^4 // 0001 0000\n    EDITCLIENTS = 32, // 2^5 // 0010 0000\n    DELETECLIENTS = 64, // 2^6 // 0100 0000\n}\"\n</code></pre>\n\n<p>Then, you can combine several permissions using the AND bitwise operator. <br /><br />\nFor example, if a user can view &amp; edit users, the binary result of the operation is 0000 0011 which converted to decimal is 3. <br />\nYou can then store the permission of one user into a single column of your DataBase (in our case it would be 3).<br /><br />\nInside your application, you just need another bitwise operation (OR) to verify if a user has a particular permission or not.</p>\n",
+      "upVoteCount": 14,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1488,
+      "postId": 1451,
+      "body": "<p>In addition to John Downey and jdecuyper's solutions, I've also added an \"Explicit Deny\" bit at the end/beginning of the bitfield, so that you can perform additive permissions by group, role membership, and then subtract permissions based upon explicit deny entries, much like NTFS works, permission-wise.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 4301,
+      "postId": 1451,
+      "body": "<p>Honestly the ASP.NET Membership / Roles features would work perfectly for the scenario you described. Writing your own tables / procs / classes is a great exercise and you can get very nice control over minute details, but after doing this myself I've concluded it's better to just use the built in .NET stuff. A lot of existing code is designed to work around it which is nice at well. Writing from scratch took me about 2 weeks and it was no where near as robust as .NETs. You have to code so much crap (password recovery, auto lockout, encryption, roles, a permission interface, tons of procs, etc) and the time could be better spent elsewhere.</p>\n\n<p>Sorry if I didn't answer your question, I'm like the guy who says to learn c# when someone asks a vb question.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1840,
+      "postId": 1829,
+      "body": "<p><strong>On Linux:</strong></p>\n\n<ul>\n<li>set raw mode</li>\n<li>select and read the keystroke</li>\n<li>restore normal settings</li>\n</ul>\n\n<pre>\nimport sys\nimport select\nimport termios\nimport tty\n\ndef getkey():\n    old_settings = termios.tcgetattr(sys.stdin)\n    tty.setraw(sys.stdin.fileno())\n    select.select([sys.stdin], [], [], 0)\n    answer = sys.stdin.read(1)\n    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)\n    return answer\n\nprint \"\"\"Menu\n1) Say Foo\n2) Say Bar\"\"\"\n\nanswer=getkey()\n\nif \"1\" in answer: print \"foo\"\nelif \"2\" in answer: print \"bar\"\n\n</pre>\n",
+      "upVoteCount": 9,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1852,
+      "postId": 1829,
+      "body": "<p><strong>On Windows:</strong></p>\n\n<pre><code>import msvcrt\nanswer=msvcrt.getch()\n</code></pre>\n",
+      "upVoteCount": 9,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1870,
+      "postId": 1829,
+      "body": "<p>Wow, that took forever. Ok, here's what I've ended up with </p>\n\n<pre><code>#!C:\\python25\\python.exe\nimport msvcrt\nprint \"\"\"Menu\n1) Say Foo \n2) Say Bar\"\"\"\nwhile 1:\n    char = msvcrt.getch()\n    if char == chr(27): #escape\n        break\n    if char == \"1\":\n        print \"foo\"\n        break\n    if char == \"2\":\n        print \"Bar\"\n        break\n</code></pre>\n\n<p>It fails hard using IDLE, the python...thing...that comes with python. But once I tried it in DOS (er, CMD.exe), as a real program, then it ran fine.</p>\n\n<p>No one try it in IDLE, unless you have Task Manager handy.</p>\n\n<p>I've already forgotten how I lived with menus that arn't super-instant responsive.</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1885,
+      "postId": 1829,
+      "body": "<p>The  reason msvcrt fails in IDLE is because IDLE is not accessing the library that runs msvcrt. Whereas when you run the program natively in cmd.exe it works nicely. For the same reason that your program blows up on Mac and Linux terminals.</p>\n\n<p>But I guess if you're going to be using this specifically for windows, more power to ya.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1926,
+      "postId": 1908,
+      "body": "<p>the problem is that the sphere can be distorted a number of ways, and having all those points known on the equator, lets say, wont help you map points further away.</p>\n\n<p>You need better 'close' points, then you can assume these three points are on a plane with the fourth and do the interpolation --knowing that the distance of longitudes is a function, not a constant.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1927,
+      "postId": 1908,
+      "body": "<p>Ummm.  Maybe I am missing something about the question here, but if you have long/lat info, you also have the direction of north?</p>\n\n<p>It seems you need to map geodesic coordinates to a projected coordinates system. For example osgb to wgs84.</p>\n\n<p>The maths involved is non-trivial, but the code comes out a only a few lines. If I had more time I'd post more but I need a shower so I will be boring and link to the <a href=\"http://en.wikipedia.org/wiki/Geographic_coordinate_system\" rel=\"nofollow noreferrer\">wikipedia</a> entry which is pretty good.</p>\n\n<p>Note: Post shower edited.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1945,
+      "postId": 1908,
+      "body": "<p>Are there any more specific details on the kind of distortion?  If, for example, your latitudes and longitudes are \"distorted\" onto your 2D map using a Mercator projection, the conversion math is <a href=\"http://www.wikipedia.org/wiki/Mercator_projection\" rel=\"noreferrer\">readily available</a>.</p>\n\n<p>If the map is distorted truly arbitrarily, there are lots of things you could try, but the simplest would probably be to compute a <a href=\"http://www.wikipedia.org/wiki/Weighted_mean\" rel=\"noreferrer\">weighted average</a> from your existing point mappings.  Your weights could be the squared inverse of the x/y distance from your new point to each of your existing points.</p>\n\n<p>Some pseudocode:</p>\n\n<pre><code>estimate-latitude-longitude (x, y)\n\n    numerator-latitude := 0\n    numerator-longitude := 0\n    denominator := 0\n\n    for each point,\n        deltaX := x - point.x\n        deltaY := y - point.y\n        distSq := deltaX * deltaX + deltaY * deltaY\n        weight := 1 / distSq\n\n        numerator-latitude += weight * point.latitude\n        numerator-longitude += weight * point.longitude\n        denominator += weight\n\n    return (numerator-latitude / denominator, numerator-longitude / denominator)\n</code></pre>\n\n<p>This code will give a relatively simple approximation.  If you can be more precise about the way the projection distorts the geographical coordinates, you can probably do much better.</p>\n",
+      "upVoteCount": 8,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2492,
+      "postId": 1908,
+      "body": "<p>Alright. From a theoretical point of view, given that the distortion is \"arbitrary\", and any solution requires you to model this arbitrary distortion, you obviously can't get an \"answer\". However, any solution is going to involve imposing (usually implicitly) some model of the distortion that may or may not reflect the reality of the situation.</p>\n\n<p>Since you seem to be most interested in models that presume some sort of local continuity of the distortion mapping, the most obvious choice is the one you've already tried: linear interpolaton between the nearest points. Going beyond that is going to require more sophisticated mathematical and numerical analysis knowledge.</p>\n\n<p>You are incorrect, however, in presuming you cannot expand this to more points. You can by using a least-squared error approach. Find the linear answer that minimizes the error of the other points. This is probably the most straight-forward extension. In other words, take the 5 nearest points and try to come up with a linear approximation that minimizes the error of those points. And use that. I would try this next.</p>\n\n<p>If that doesn't work, then the assumption of linearity over the area of N points is broken. At that point you'll need to upgrade to either a quadratic or cubic model. The math is going to get hectic at that point.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2220,
+      "postId": 2214,
+      "body": "<p>NUnit is always a favorite of mine.  However if you are using TFS as your source control I suggest you stick with the Microsoft Stack.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 1
+    },
+    {
+      "id": 2228,
+      "postId": 2214,
+      "body": "<p>For a Mock Object library, I've found the BSD-licensed <a href=\"http://ayende.com/projects/rhino-mocks.aspx\" rel=\"nofollow noreferrer\">Rhino.Mocks</a> to be rather pleasing.</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2246,
+      "postId": 2214,
+      "body": "<p><strong>NUnit</strong> is available at <a href=\"http://www.nunit.org\" rel=\"nofollow noreferrer\">http://www.nunit.org</a>\nI would suggest this even when working on the MS stack - the support for non-MS frameworks is happening in the MVC previews which shows a definite movement in the right direction to allow us all to customise our stacks to fit.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2713,
+      "postId": 2711,
+      "body": "<p><a href=\"http://www.csszengarden.com/\" rel=\"nofollow noreferrer\">http://www.csszengarden.com/</a></p>\n\n<p>The images are not Creative Commons, but the CSS is.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 1
+    },
+    {
+      "id": 2716,
+      "postId": 2711,
+      "body": "<p>+1 for <a href=\"http://www.csszengarden.com/\" rel=\"nofollow noreferrer\">Zen garden.</a></p>\n\n<p>I like the resources at <a href=\"http://inobscuro.com/\" rel=\"nofollow noreferrer\">inobscuro.com</a></p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2724,
+      "postId": 2711,
+      "body": "<p><a href=\"http://www.opendesigns.org/\" rel=\"nofollow noreferrer\">The Open Design Community</a> is a great resource.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2731,
+      "postId": 2711,
+      "body": "<p><a href=\"http://www.opensourcetemplates.org/\" rel=\"nofollow noreferrer\">http://www.opensourcetemplates.org/</a> has nice designs, just not enough selection.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2763,
+      "postId": 2711,
+      "body": "<p>Check out:</p>\n\n<ul>\n<li><a href=\"http://www.oswd.org/\" rel=\"noreferrer\">Open Source Web Designs</a></li>\n<li><a href=\"http://cssremix.com/\" rel=\"noreferrer\">CSS Remix</a></li>\n<li><a href=\"http://bestwebgallery.com/\" rel=\"noreferrer\">Best Web Gallery</a></li>\n<li><a href=\"http://www.cssbased.com/\" rel=\"noreferrer\">CSS Based</a></li>\n<li><a href=\"http://www.cssbeauty.com/gallery/\" rel=\"noreferrer\">CSS Beauty</a></li>\n<li><a href=\"http://www.my3w.org\" rel=\"noreferrer\">CSS Genius</a></li>\n</ul>\n",
+      "upVoteCount": 13,
+      "downVoteCount": 1
+    },
+    {
+      "id": 2789,
+      "postId": 2780,
+      "body": "<p>It's called <a href=\"http://en.wikipedia.org/wiki/Alpha_compositing\" rel=\"noreferrer\">alpha blending</a>.</p>\n\n<p>In psuedocode, assuming the background color (blend) always has 255 alpha. Also assumes alpha is 0-255.</p>\n\n<pre><code>alpha=argb.alpha()\nr = (alpha/255)*argb.r() + (1 - alpha/255)*blend.r()\ng = (alpha/255)*argb.g() + (1 - alpha/255)*blend.g()\nb = (alpha/255)*argb.b() + (1 - alpha/255)*blend.b()\n</code></pre>\n\n<p><em>note: you probably need to be a bit (more) careful about floating-point/int math and rounding issues, depending on language. Cast intermediates accordingly</em></p>\n\n<p><strong>Edited to add:</strong></p>\n\n<p>If you don't have a background color with an alpha of 255, the algebra gets alot more complicated. I've done it before and it's a fun exercise left to the reader (if you really need to know, ask another question :). </p>\n\n<p>In other words, what color C blends into some background the same as blending A, then blending B. This is sort of like calculating A+B (which isn't the same as B+A).</p>\n",
+      "upVoteCount": 19,
+      "downVoteCount": 0
+    },
+    {
+      "id": 3129,
+      "postId": 2780,
+      "body": "<p>if you don't need to know this pre-render, you could always use the win32 method of getpixel, I believe. </p>\n\n<p>Note: typing on iPhone in the middle of Missouri with no inet access. Will look up real win32 example and see if there is a .net equivalent.</p>\n\n<p>In case anyone cares, and doesn't want to use the (excellent) answer posted above, you can get the color value of a pixel in .Net via this link <a href=\"http://msdn.microsoft.com/en-us/library/system.drawing.bitmap.getpixel.aspx\" rel=\"nofollow noreferrer\">MSDN example</a></p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 17318104,
+      "postId": 2780,
+      "body": "<p>I know this is an old thread, but I want to add this:</p>\n\n<pre><code>Public Shared Function AlphaBlend(ByVal ForeGround As Color, ByVal BackGround As Color) As Color\n    If ForeGround.A = 0 Then Return BackGround\n    If BackGround.A = 0 Then Return ForeGround\n    If ForeGround.A = 255 Then Return ForeGround\n    Dim Alpha As Integer = CInt(ForeGround.A) + 1\n    Dim B As Integer = Alpha * ForeGround.B + (255 - Alpha) * BackGround.B &gt;&gt; 8\n    Dim G As Integer = Alpha * ForeGround.G + (255 - Alpha) * BackGround.G &gt;&gt; 8\n    Dim R As Integer = Alpha * ForeGround.R + (255 - Alpha) * BackGround.R &gt;&gt; 8\n    Dim A As Integer = ForeGround.A\n\n    If BackGround.A = 255 Then A = 255\n    If A &gt; 255 Then A = 255\n    If R &gt; 255 Then R = 255\n    If G &gt; 255 Then G = 255\n    If B &gt; 255 Then B = 255\n\n    Return Color.FromArgb(Math.Abs(A), Math.Abs(R), Math.Abs(G), Math.Abs(B))\nEnd Function\n\npublic static Color AlphaBlend(Color ForeGround, Color BackGround)\n{\n    if (ForeGround.A == 0)\n        return BackGround;\n    if (BackGround.A == 0)\n        return ForeGround;\n    if (ForeGround.A == 255)\n        return ForeGround;\n\n    int Alpha = Convert.ToInt32(ForeGround.A) + 1;\n    int B = Alpha * ForeGround.B + (255 - Alpha) * BackGround.B &gt;&gt; 8;\n    int G = Alpha * ForeGround.G + (255 - Alpha) * BackGround.G &gt;&gt; 8;\n    int R = Alpha * ForeGround.R + (255 - Alpha) * BackGround.R &gt;&gt; 8;\n    int A = ForeGround.A;\n\n    if (BackGround.A == 255)\n        A = 255;\n    if (A &gt; 255)\n        A = 255;\n    if (R &gt; 255)\n        R = 255;\n    if (G &gt; 255)\n        G = 255;\n    if (B &gt; 255)\n        B = 255;\n\n    return Color.FromArgb(Math.Abs(A), Math.Abs(R), Math.Abs(G), Math.Abs(B));\n}\n</code></pre>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 4348,
+      "postId": 4347,
+      "body": "<p>I don't know if I'd call it a good place to start, but if you want to be future ready, take a look at the <a href=\"http://windowsclient.net/\" rel=\"noreferrer\">windows presentation foundation</a> which is built entirely for the purpose of programming GUI's for windows</p>\n",
+      "upVoteCount": 5,
+      "downVoteCount": 0
+    },
+    {
+      "id": 4370,
+      "postId": 4347,
+      "body": "<p>My first experience writing simple GUI applications for Windows was with C# and Visual Studio.  The GUI-building interface is a simple drag and drop deal that generates skeleton methods based on potential user actions.  I only did fairly basic programming with this, but I imagine it would be an excellent place to start to learn the basics and extend into the more advanced capabilities as you go.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 4597,
+      "postId": 4347,
+      "body": "<p>This is a rather broad question, as programming GUI applications in Windows can be done in so many ways.</p>\n\n<p>There are two main parts to developing any GUI app: the <strong>language</strong> and the <strong>API/framework</strong>. Considering you're interested in learning to build Windows GUI apps, the language isn't really a point of focus for you. Hence, you should pick a language you already know and work with a framework or API that can be harnessed by your chosen language.</p>\n\n<p>If you want to use C you're pretty much restricted to dealing with the Win32 API yourself, in which case reading <a href=\"https://rads.stackoverflow.com/amzn/click/com/157231995X\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">Petzold</a> or <a href=\"https://rads.stackoverflow.com/amzn/click/com/0735624240\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">Richter</a> would be great places to start. The Win32 API can be quite daunting, but it's well worth the effort to learn (imho). There are plenty of tutorials on Win32 on the web, and there's always <a href=\"http://msdn.microsoft.com/\" rel=\"noreferrer\">MSDN</a>, with a complete reference/guide to the Win32 API. Make sure you cover not just the API, but other areas such as resources/dialogs as they are building blocks for your Win32 application.</p>\n\n<p>If you want to use C++ you have all of the options that you have when using C plus a few others. I'd recommend going with the Win32 API directly, and then moving on to a known framework such as MFC, Qt, wxWindows or GTK so that you can spend less time working with boilerplate code and instead focus on writing your application logic. The last 3 options I just listed have the added benefit of being cross-platform, so you don't have to worry too much about platform-specific issues. Given that you said you want to work with Windows, I'll assume you're keen to focus on that rather than cross-platform -- so go with MFC, but spend some time with the Win32 API first to get familiar with some of the concepts.</p>\n\n<p>When dealing with MFC and the Win32 API, it's a good idea to try and get a solid understanding of the terminology prior to writing code. For example, you need to understand what the <a href=\"http://en.wikipedia.org/wiki/Message_loop_in_Microsoft_Windows\" rel=\"noreferrer\">message pump</a> is, and how it works. You need to know about concepts such as \"<a href=\"http://www.codeproject.com/KB/buttons/nativewin32xpthemes.aspx\" rel=\"noreferrer\">owner-drawn</a> controls\", and <a href=\"http://msdn.microsoft.com/en-us/library/ms997565.aspx\" rel=\"noreferrer\">subclassing</a>. When you understand these things (and more), you'll find it easier to work with MFC because it uses similar terminology in its class interfaces (eg. you need to know what \"translate messages\" means before you can understand how and when to use <a href=\"http://msdn.microsoft.com/en-us/library/kkbhxcs2(VS.80).aspx\" rel=\"noreferrer\">PreTranslateMessage</a>).</p>\n\n<p>You could also use Managed C++ to write .NET GUI applications, but I've read in a few places that Managed C++ wasn't really intended to be used in this manner. Instead it should be used as a gateway between native/unmanaged code and managed code. If you're using .NET it's best to use a .NET language such as VB.NET or C# to build your GUIs.</p>\n\n<p>So if you <em>are</em> going to use .NET, you currently have the choice of the <a href=\"http://msdn.microsoft.com/en-us/netframework/aa497342.aspx\" rel=\"noreferrer\">WinForms</a> library, or <a href=\"http://en.wikipedia.org/wiki/Windows_Presentation_Foundation\" rel=\"noreferrer\">WPF</a>. I personally feel that you'd be wasting time learning to build WinForms applications given that WPF is designed to replace it. Over time WPF will become more prevelant and Winforms will most likely die off. WPF has a much richer API set, and doesn't suffer from many of the limitations that Winforms does. If you do choose this route, however, you'll no doubt have to learn <a href=\"http://msdn.microsoft.com/en-us/library/ms752059.aspx\" rel=\"noreferrer\">XAML</a>, which is a markup language that drives WPF applications. This technology is coming of age, and there are many great places to learn about it. First, there are sites such as <a href=\"http://learnwpf.com/\" rel=\"noreferrer\">LearnWPF</a>, and <a href=\"http://www.drwpf.com/\" rel=\"noreferrer\">DrWPF</a> which have some really great articles. Secondly, there are <a href=\"https://rads.stackoverflow.com/amzn/click/com/0321374479\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">plenty</a> of <a href=\"https://rads.stackoverflow.com/amzn/click/com/0596510373\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">quality</a> <a href=\"https://rads.stackoverflow.com/amzn/click/com/0672328917\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">books</a> on the <a href=\"https://rads.stackoverflow.com/amzn/click/com/1590599551\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">topic</a>.</p>\n\n<p>So, to sum up, once you've picked your language and tech, the path is actually quite easy. Just pick up a book or two, read some blogs, get into some code samples.. and most importantly ... write code. Keep writing, keep making mistakes, and keep learning from them.</p>\n\n<p>As a final note...</p>\n\n<blockquote>\n  <p>In other words, Silverlight. If you don't want to go the MS route you might give Adobe's Flash/Flex a look see. Both Silverlight and Flash/Flex build RIA's. Which I think is where we are headed. They days of Office like apps are numbered</p>\n</blockquote>\n\n<p>I don't agree at all. Silverlight is not the same as WPF. Silverlight is web-specific, and only has a subset of WPF's features. Given that the question asks for Windows GUI apps, Flash/Flex Rich Internet Apps are not really a fitting suggestion. I also don't agree that the days of Rich Client Applications (such as office) are numbered at all.</p>\n\n<p>I hope that helps. Good luck :)</p>\n",
+      "upVoteCount": 43,
+      "downVoteCount": 0
+    },
+    {
+      "id": 8745,
+      "postId": 4347,
+      "body": "<p>For business apps, Windows Forms is very mature. It provides a gentle path from auto-generating a lot for you into allowing fine-grained control and rolling your own.  There are tons of high-quality third party controls and a large body of examples, docs, etc out there. It's hard to run into a problem that someone else hasn't solved. I highly recommend acquiring some background Win32 knowledge (e.g. <a href=\"http://www.charlespetzold.com/pw5/index.html\" rel=\"nofollow noreferrer\">Petzold</a>) as the WinForms framework lives on top of it.</p>\n\n<p>I have no WPF experience, but from the sample apps I've seen it looks like a good choice for apps whose interfaces would benefit from more graphical metaphors. So if you're doing a banking app, probably not worth the extra design overhead. But if you're doing, say, a warehouse management app it could be improved by dropping pretty boxes into pretty bins.</p>\n\n<p>@StephenCox: wrong answer to the wrong question. OP is asking about desktop client apps, and moreover, WPF != Silverlight.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5026,
+      "postId": 4850,
+      "body": "<p>Within your overridden ProcessCmdKey how are you determining which key has been pressed?</p>\n\n<p>The value of keyData (the second parameter) will change dependant on the key pressed and any modifier keys, so, for example, pressing the left arrow will return code 37, shift-left will return 65573, ctrl-left 131109 and alt-left 262181.</p>\n\n<p>You can extract the modifiers and the key pressed by ANDing with appropriate enum values:</p>\n\n<pre><code>protected override bool ProcessCmdKey(ref Message msg, Keys keyData)\n{\n    bool shiftPressed = (keyData &amp; Keys.Shift) != 0;\n    Keys unmodifiedKey = (keyData &amp; Keys.KeyCode);\n\n    // rest of code goes here\n}\n</code></pre>\n",
+      "upVoteCount": 12,
+      "downVoteCount": 0
+    },
+    {
+      "id": 2033811,
+      "postId": 4850,
+      "body": "<p>I upvoted <a href=\"https://stackoverflow.com/questions/4850/c-and-arrow-keys/5026#5026\">Tokabi's answer</a>, but for comparing keys there is some additional advice on <a href=\"https://stackoverflow.com/questions/1369312/c-keys-enumeration-confused-keys-alt-or-keys-rbutton-keys-shiftkey-keys-alt/2033796#2033796\">StackOverflow.com here</a>. Here are some functions which I used to help simplify everything.</p>\n\n<pre><code>   public Keys UnmodifiedKey(Keys key)\n    {\n        return key &amp; Keys.KeyCode;\n    }\n\n    public bool KeyPressed(Keys key, Keys test)\n    {\n        return UnmodifiedKey(key) == test;\n    }\n\n    public bool ModifierKeyPressed(Keys key, Keys test)\n    {\n        return (key &amp; test) == test;\n    }\n\n    public bool ControlPressed(Keys key)\n    {\n        return ModifierKeyPressed(key, Keys.Control);\n    }\n\n    public bool AltPressed(Keys key)\n    {\n        return ModifierKeyPressed(key, Keys.Alt);\n    }\n\n    public bool ShiftPressed(Keys key)\n    {\n        return ModifierKeyPressed(key, Keys.Shift);\n    }\n\n    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)\n    {\n        if (KeyPressed(keyData, Keys.Left) &amp;&amp; AltPressed(keyData))\n        {\n            int n = code.Text.IndexOfPrev('&lt;', code.SelectionStart);\n            if (n &lt; 0) return false;\n            if (ShiftPressed(keyData))\n            {\n                code.ExpandSelectionLeftTo(n);\n            }\n            else\n            {\n                code.SelectionStart = n;\n                code.SelectionLength = 0;\n            }\n            return true;\n        }\n        else if (KeyPressed(keyData, Keys.Right) &amp;&amp; AltPressed(keyData))\n        {\n            if (ShiftPressed(keyData))\n            {\n                int n = code.Text.IndexOf('&gt;', code.SelectionEnd() + 1);\n                if (n &lt; 0) return false;\n                code.ExpandSelectionRightTo(n + 1);\n            }\n            else\n            {\n                int n = code.Text.IndexOf('&lt;', code.SelectionStart + 1);\n                if (n &lt; 0) return false;\n                code.SelectionStart = n;\n                code.SelectionLength = 0;\n            }\n            return true;\n        }\n        return base.ProcessCmdKey(ref msg, keyData);\n    }\n</code></pre>\n",
+      "upVoteCount": 6,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5532,
+      "postId": 5527,
+      "body": "<p>J# is no longer included in VS2008. Unless you already have J# code, you should probably stay away.</p>\n\n<p>From <a href=\"http://msdn.microsoft.com/en-us/vjsharp/default.aspx\" rel=\"noreferrer\">j# product page:</a></p>\n\n<blockquote>\n  <p>Since customers have told us that the\n  existing J# feature set largely meets\n  their needs and usage of J# is\n  declining, Microsoft is retiring the\n  Visual J# product and Java Language\n  Conversion Assistant tool to better\n  allocate resources for other customer\n  requirements. The J# language and JLCA\n  tool will not be available in future\n  versions of Visual Studio. To preserve\n  existing customer investments in J#,\n  Microsoft will continue to support the\n  J# and JLCA technology that shipped\n  with Visual Studio 2005 through to\n  2015 as per our product life-cycle\n  strategy. For more information, see\n  Expanded Microsoft Support Lifecycle\n  Policy for Business &amp; Development\n  Products.</p>\n</blockquote>\n",
+      "upVoteCount": 22,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5536,
+      "postId": 5527,
+      "body": "<p>The whole purpose of J# is to ease the transition of Java developers to the .NET environment which didn't work so well (I guessing here) so Microsoft dropped J# from Visual Studio 2008.\nFor your question, \"Is there a real benefit of using J#?\"..\nin a nutshell... No..</p>\n",
+      "upVoteCount": 11,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5538,
+      "postId": 5527,
+      "body": "<p>One of the killers I've found with J# in the past is that there is no built in support for referencing web services. That alone has been enough to deter me from it ever since.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5645,
+      "postId": 5527,
+      "body": "<p>C# syntax is so close to Java (and better in some ways) that you might as well learn C# instead of J#.  And since C# is more widely used, you can easily find Java --> C# tutorials on google or check out <a href=\"http://www.asp.net/learn\" rel=\"nofollow noreferrer\">http://www.asp.net/learn</a> and watch some videos.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 7557,
+      "postId": 5527,
+      "body": "<p>Instead of J#, I would rather prefer IKVM (<a href=\"http://www.ikvm.net/\" rel=\"nofollow noreferrer\">http://www.ikvm.net/</a>) to convert my JARs to .NET assemblies as well as access Java APIs in C#.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 16755,
+      "postId": 5527,
+      "body": "<p>Strongly agree that syntactically C# beats Java hands down, so there is really no reason to lament the demise of j#.  Now trying to get c# compiling to Java bytecode might be an interesting move as Sun's hotspot jvm is great software.</p>\n\n<p>Or, for a bit of fun with what might well become the next generation of Java, how about <a href=\"http://www.scala-lang.org/node/168\" rel=\"nofollow noreferrer\">Scala on the CLR</a>...</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 2
+    },
+    {
+      "id": 29289,
+      "postId": 5527,
+      "body": "<p>I don't think it's a matter of which language is better. In the .NET world there are some inconsistencies between the libraries different languages provide. There are certain functionality that is available in VB.NET that you might like to use from C# but can't. I remember I had to use J# to use some ZIP libraries that were not available in any other language in .NET.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5923,
+      "postId": 5916,
+      "body": "<p>I use <a href=\"http://macromates.com/\" rel=\"nofollow noreferrer\">Textmate</a> (Mac only) which has Code folding and I find it really useful for folding functions, I know what my \"getGet\" function does, I don't need it taking up 10 lines of oh so valuable screen space.</p>\n\n<p>I never use it to hide a for loop, if statement or similar unless showing the code to someone else where I will hide code they have seen to avoid showing the same code twice.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5929,
+      "postId": 5916,
+      "body": "<p>This was talked about on <a href=\"https://blog.codinghorror.com/the-problem-with-code-folding/\" rel=\"nofollow noreferrer\">Coding Horror</a>.</p>\n\n<p>My personal belief is that is that they are useful, but like anything in excess can be too much. </p>\n\n<p>I use it to order my code blocks into:\n<br>Enumerations\n<br>Declarations\n<br>Constructors\n<br>Methods\n<br>Event Handlers\n<br>Properties</p>\n",
+      "upVoteCount": 17,
+      "downVoteCount": 2
+    },
+    {
+      "id": 5930,
+      "postId": 5916,
+      "body": "<p>I personally use #Regions all the time. I find that it helps me to keep things like properties, declarations, etc separated from each other.</p>\n\n<p>This is probably a good answer, too!</p>\n\n<p><a href=\"https://blog.codinghorror.com/the-problem-with-code-folding/\" rel=\"nofollow noreferrer\">Coding Horror</a></p>\n\n<p>Edit: Dang, Pat beat me to this!</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 1
+    },
+    {
+      "id": 5953,
+      "postId": 5916,
+      "body": "<p>While I understand the problem that Jeff, et. al. have with regions, what I <em>don't</em> understand is why hitting <kbd>CTRL</kbd>+<kbd>M</kbd>,<kbd>CTRL</kbd>+<kbd>L</kbd> to expand all regions in a file is so difficult to deal with.</p>\n",
+      "upVoteCount": 6,
+      "downVoteCount": 1
+    },
+    {
+      "id": 5954,
+      "postId": 5916,
+      "body": "<p>I prefer #regions myself, but an old coworker couldn't stand to have things hidden. I understood his point once I worked on a page with 7 #regions, at least 3 of which had been auto-generated and had the same name, but in general I think they're a useful way of splitting things up and keeping everything less cluttered.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 1
+    },
+    {
+      "id": 5962,
+      "postId": 5916,
+      "body": "<p>I prefer partial classes as opposed to regions.</p>\n\n<p>Extensive use of regions by others also give me the impression that someone, somewhere, is violating the Single Responsibility Principle and is trying to do too many things with one object.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5971,
+      "postId": 5916,
+      "body": "<p>I'm not a fan of partial classes - I try to develop my classes such that each class has a very clear, single issue for which it's responsible. To that end, I don't believe that something with a clear responsibility should be split across multiple files. That's why I don't like partial classes.</p>\n\n<p>With that said, I'm on the fence about regions. For the most part, I don't use them; however, I work with code every day that includes regions - some people go really heavy on them (folding up private methods into a region and then each method folded into its own region), and some people go light on them (folding up enums, folding up attributes, etc). My general rule of thumb, as of now, is that I only put code in regions if (a) the data is likely to remain static or will not be touched very often (like enums), or (b) if there are methods that are implemented out of necessity because of subclassing or abstract method implementation, but, again, won't be touched very often.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 1
+    },
+    {
+      "id": 5972,
+      "postId": 5916,
+      "body": "<p>Sometimes you might find yourself working on a team where #regions are encouraged or required. If you're like me and you can't stand messing around with folded code you can turn off outlining for C#:</p>\n\n<ol>\n<li>Options -> Text Editor -> C# -> Advanced Tab</li>\n<li>Uncheck \"Enter outlining mode when files open\"</li>\n</ol>\n",
+      "upVoteCount": 10,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5990,
+      "postId": 5916,
+      "body": "<p>I use #Region to hide ugly and useless automatically generated code, which really belongs in the automatically generated part of the partial class. But, when working with old projects or upgraded projects, you don't always have that luxury.</p>\n\n<p>As for other types of folding, I fold Functions all the time. If you name the function well, you will never have to look inside unless you're testing something or (re-)writing it.</p>\n",
+      "upVoteCount": 5,
+      "downVoteCount": 0
+    },
+    {
+      "id": 6287,
+      "postId": 5916,
+      "body": "<p>@<a href=\"https://stackoverflow.com/questions/5916/how-do-you-feel-about-code-folding#5971\">Tom</a></p>\n\n<p>Partial classes are provided so that you can separate tool auto-generated code from any customisations you may need to make after the code gen has done its bit. This means your code stays intact after you re-run the codegen and doesn't get overwritten. This is a good thing. </p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 6295,
+      "postId": 5916,
+      "body": "<p>I really don't have a problem with using #region to organize code.  Personally, I'll usually setup different regions for things like properties, event handlers, and public/private methods.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 1
+    },
+    {
+      "id": 7752,
+      "postId": 5916,
+      "body": "<p>Eclipse does some of this in Java (or PHP with plugins) on its own. Allows you to fold functions and such. I tend to like it. If I know what a function does and I am not working on it, I dont need to look at it.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 7767,
+      "postId": 5916,
+      "body": "<p>9 out of 10 times, code folding means that you have failed to use the <a href=\"http://en.wikipedia.org/wiki/Separation_of_concerns\" rel=\"noreferrer\">SoC principle</a> for what its worth.<br />\nI more or less feel the same thing about partial classes. If you have a piece of code you think is too big you need to chop it up in manageable (and reusable) parts, not hide or split it up.<br />It will bite you the next time someone needs to change it, and cannot see the logic hidden in a 250 line monster of a method.<br />\n<br />\nWhenever you can, pull some code out of the main class, and into a helper or factory class.\n<br /></p>\n\n<pre><code>foreach (var item in Items)\n{\n    //.. 100 lines of validation and data logic..\n}\n</code></pre>\n\n<p>is not as readable as</p>\n\n<pre><code>foreach (var item in Items)\n{\n    if (ValidatorClass.Validate(item))\n        RepositoryClass.Update(item);\n}\n</code></pre>\n\n<p><br />\n<br />\nMy $0.02 anyways.</p>\n",
+      "upVoteCount": 37,
+      "downVoteCount": 1
+    },
+    {
+      "id": 9049,
+      "postId": 5916,
+      "body": "<p>Regions must never be used inside methods. They may be used to group methods but this must be handled with extreme caution so that the reader of the code does not go insane. There is no point in folding methods by their modifiers. But sometimes folding may increase readability. For e.g. grouping some methods that you use for working around some issues when using an external library and you won't want to visit too often may be helpful. But the coder must always seek for solutions like wrapping the library with appropriate classes in this particular example. When all else fails, use folding for improving readibility.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 9053,
+      "postId": 5916,
+      "body": "<p>I think that it's a useful tool, when used properly. In many cases, I feel that methods and enumerations and other things that are often folded should be little black boxes. Unless you must look at them for some reason, their contents don't matter and should be as hidden as possible. However, I never fold private methods, comments, or inner classes. Methods and enums are really the only things I fold.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 9063,
+      "postId": 5916,
+      "body": "<p>My approach is similar to a few others here, using regions to organize code blocks into constructors, properties, events, etc.</p>\n\n<p>There's an excellent set of VS.NET macros by Roland Weigelt available from his blog entry, <a href=\"http://weblogs.asp.net/rweigelt/archive/2003/07/06/9741.aspx\" rel=\"nofollow noreferrer\">Better Keyboard Support for #region ... #endregion</a>.  I've been using these for years, mapping ctrl+. to collapse the current region and ctrl++ to expand it.  Find that it works a lot better that the default VS.NET functionality which folds/unfolds everything.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14568,
+      "postId": 5916,
+      "body": "<p>The <a href=\"https://blog.codinghorror.com/the-problem-with-code-folding/\" rel=\"nofollow noreferrer\">Coding Horror</a> article actual got me thinking about this as well.</p>\n\n<p>Generally, I large classes I will put a region around the member variables, constants, and properties to reduce the amount of text I have to scroll through and leave everything else outside of a region. On forms I will generally group things into \"member variables, constants, and properties\", form functions, and event handlers. Once again, this is more so I don't have to scroll through a lot of text when I just want to review some event handlers.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 25984,
+      "postId": 5916,
+      "body": "<p>Emacs has a folding minor mode, but I only fire it up occasionally. Mostly when I'm working on some monstrosity inherited from another physicist who evidently had less instruction or took less care about his/her coding practices. </p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 26003,
+      "postId": 5916,
+      "body": "<p>This is just one of those silly discussions that lead to nowhere. If you like regions, use them. If you don't, configure your editor to turn them off. There, everybody is happy.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 1
+    },
+    {
+      "id": 33023,
+      "postId": 5916,
+      "body": "<p>Using regions (or otherwise folding code) <strong>should</strong> have nothing to do with code smells (or hiding them) or any other idea of hiding code you don't want people to \"easily\" see.</p>\n\n<p>Regions and code folding is really all about providing a way to easily group sections of code that can be collapsed/folded/hidden to minimize the amount of extraneous \"noise\" around what you are currently working on. If you set things up correctly (meaning actually name your regions something useful, like the name of the method contained) then you can collapse everything except for the function you are currently editing and still maintain some level of context without having to actually see the other code lines.</p>\n\n<p>There probably should be some best practice type guidelines around these ideas, but I use regions extensively to provide a standard structure to my code files (I group events, class-wide fields, private properties/methods, public properties/methods). Each method or property also has a region, where the region name is the method/property name. If I have a bunch of overloaded methods, the region name is the full signature and then that entire group is wrapped in a region that is just the function name.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 8054,
+      "postId": 8042,
+      "body": "<p>One problem I can see is that, in a large company, this pattern could allow the code to become difficult (if not impossible) for anyone to understand and use. If multiple developers are constantly adding their own methods to existing classes, separate from those classes (and, God help us all, to BCL classes even), I could see a code base spinning out of control rather quickly.</p>\n\n<p>Even at my own job, I could see this happening, with my PM's desire to add every bit of code that we work on to either the UI or the data access layer, I could totally see him insisting on 20 or 30 methods being added to System.String that are only tangentially-related to string handling.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 8091,
+      "postId": 8042,
+      "body": "<p>I think the best thing that extension methods replace are all those utility classes that you find in every project.</p>\n\n<p>At least for now, I feel that any other use of Extension methods would cause confusion in the workplace.</p>\n\n<p>My two bits.</p>\n",
+      "upVoteCount": 6,
+      "downVoteCount": 0
+    },
+    {
+      "id": 8564,
+      "postId": 8042,
+      "body": "<p>Extension methods should be used as just that: extensions. Any crucial structure/design related code or non-trivial operation should be put in an object that is composed into/inherited from a class or interface. </p>\n\n<p>Once another object tries to use the extended one, they won't see the extensions and might have to reimplement/re-reference them again.</p>\n\n<p>The traditional wisdom is that Extension methods should only be used for:</p>\n\n<ul>\n<li>utility classes, as Vaibhav mentioned</li>\n<li>extending sealed 3rd party APIs</li>\n</ul>\n",
+      "upVoteCount": 11,
+      "downVoteCount": 0
+    },
+    {
+      "id": 8570,
+      "postId": 8042,
+      "body": "<p>Ouch. Please don't extend Interfaces.<br>\nAn interface is a clean contract that a class should implement, and your usage of said classes <strong>must</strong> be restricted to what is in the core Interface for this to work correctly.</p>\n\n<p>That is why you always declare the interface as the type instead of the actual class.</p>\n\n<pre><code>IInterface variable = new ImplementingClass();\n</code></pre>\n\n<p>Right?</p>\n\n<p>If you really need a contract with some added functionality, abstract classes are your friends.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11506,
+      "postId": 11500,
+      "body": "<p>You could turn on compression based on your client supporting it. See this article: <a href=\"http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/d52ff289-94d3-4085-bc4e-24eb4f312e0e.mspx?mfr=true\" rel=\"nofollow noreferrer\">link text</a></p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11507,
+      "postId": 11500,
+      "body": "<p>Static resources shouldn't be resent unless changed. IIS will send a response code which tells the browser to use the cached version.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11521,
+      "postId": 11500,
+      "body": "<ol>\n<li><a href=\"http://weblogs.asp.net/scottgu/archive/2008/05/12/visual-studio-2008-and-net-framework-3-5-service-pack-1-beta.aspx\" rel=\"noreferrer\">Script Combining in .net 3.5 SP1</a></li>\n<li><a href=\"http://developer.yahoo.com/performance/rules.html\" rel=\"noreferrer\">Best Practices for fast websites</a></li>\n<li>HTTP Compression (gzip)</li>\n<li>Compress JS / CSS (different than http compression, minify javascript)\n\n<ol>\n<li><a href=\"http://developer.yahoo.com/yui/compressor/\" rel=\"noreferrer\">YUI Compressor</a></li>\n<li><a href=\"http://www.codeplex.com/YUICompressor\" rel=\"noreferrer\">.NET YUI Compressor</a></li>\n</ol></li>\n</ol>\n\n<p>My best advice is to check out the <a href=\"http://developer.yahoo.com/YUI\" rel=\"noreferrer\">YUI content</a>. They have some great articles that talk about things like <a href=\"http://www.alistapart.com/articles/sprites/\" rel=\"noreferrer\">CSS sprites</a> and have some <a href=\"http://developer.yahoo.com/yui/imageloader/\" rel=\"noreferrer\">nice javascript libraries to help reduce the number of requests</a> the browser is making.</p>\n",
+      "upVoteCount": 22,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11528,
+      "postId": 11500,
+      "body": "<p>Turn viewstate off by default, it will be a night and day difference on even the most simple pages.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11534,
+      "postId": 11500,
+      "body": "<p>I think you really need to be able to get some actual PerfMon data/telemetry from the app whilst running in production to be able to make an enlightened decision about what to optimise. </p>\n\n<p>As a throw away tip I'd make sure your app is deployed as a <em>Release</em> build and set debug=\"false\" in the '<em>compilation</em>' section of your web.config.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11537,
+      "postId": 11500,
+      "body": "<p>If you are using Firefox to test your website, you might want to try a nifty Firefox extension from Yahoo! called <a href=\"http://web.archive.org/web/20101208124338/https://addons.mozilla.org/en-US/firefox/addon/5369/\" rel=\"nofollow noreferrer\">YSlow</a>.</p>\n<p>It analyzes your web pages and provides grades from A-F (A being the Best and F being the worst) for each of the best practices, for high performance websites. It will help you to track down the elements of your website which you could optimize to gain speedups.</p>\n<p><strong>UPDATE</strong></p>\n<p>Now <a href=\"http://yslow.org/\" rel=\"nofollow noreferrer\">YSlow</a> extension is compatible with all modern browsers such as Firefox, Chrome, Opera, Safari and others, read more <a href=\"http://yslow.org/\" rel=\"nofollow noreferrer\">here</a>.</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11570,
+      "postId": 11500,
+      "body": "<p>You seem to be starting by assuming that your problem is download size - that may not necessarily be the case. You should do some experimentation with your ASP.NET site to determine if there are areas in your code which are causing undue delays. If it turns out that download size is not your problem, you'll need to find ways to cache your results (look into output caching, which is an ASP.NET feature) or optimize your code.</p>\n\n<p>In any case - the first step when looking at a performance issue is <em>always</em> to verify your assumptions first, then decide on a course of action.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11616,
+      "postId": 11500,
+      "body": "<p>Have you tried these tips?</p>\n\n<p><a href=\"http://weblogs.asp.net/haroonwaheed/archive/2008/06/30/ASP.NET-Performance-Tips.aspx\" rel=\"nofollow noreferrer\">http://weblogs.asp.net/haroonwaheed/archive/2008/06/30/ASP.NET-Performance-Tips.aspx</a></p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 11912,
+      "postId": 11500,
+      "body": "<p>I wrote a <a href=\"http://terrapinstation.wordpress.com/2008/06/12/aspnet-http-comression-and-reducing-response-size/\" rel=\"nofollow noreferrer\">blog post</a> about improving ASP.NET page performance this a couple months back. Here are some quick &amp; easy ways -</p>\n\n<ul>\n<li>Turn off view state</li>\n<li>Turn off event validation</li>\n<li>Implement HTTP gzip/deflate compression to reduce the response size (number of bytes the server has to send back to the client)</li>\n<li>Try to optimize/minimize your database calls for each request</li>\n</ul>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 32043,
+      "postId": 11500,
+      "body": "<p>You could start looking at caching strategies. Static files like CSS (even compressed ones) and images (even optimized ones) should only need to be downloaded once by the browser for a period of time. </p>\n\n<p>Scirpt combining for AJAX has already been mentioned, but I didn't notice reference to the ScriptReferenceProfiler MS has released on codeplex to help figure out what to combine. Mike Ormond <a href=\"http://blogs.msdn.com/mikeormond/archive/2008/06/26/asp-net-ajax-scriptreferenceprofiler.aspx\" rel=\"nofollow noreferrer\">has a good start point on this</a>.</p>\n\n<p>Another tip if you're doing a lot of INSERTs to your database is to double check your server's disk caching is switched on. Case in point, I had an data importer doing 1.2 million inserts during a run. Took 4 hours and change without caching on. Took 16 minutes with it on. </p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 88521,
+      "postId": 11500,
+      "body": "<p>You could also look at ASP.NET output caching, which can be applied fairly granularly to different portions of your page:</p>\n\n<p><a href=\"http://msdn.microsoft.com/en-us/library/xsbfdd8c(VS.71).aspx\" rel=\"nofollow noreferrer\">http://msdn.microsoft.com/en-us/library/xsbfdd8c(VS.71).aspx</a></p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14391,
+      "postId": 14389,
+      "body": "<p>Use a subrange of <code>[\\u0000-\\uFFFF]</code> for what you want.</p>\n\n<p>You can also use the <code>re.UNICODE</code> compile flag. <a href=\"http://docs.python.org/lib/re-syntax.html\" rel=\"nofollow noreferrer\">The docs</a> say that if <code>UNICODE</code> is set, <code>\\w</code> will match the characters <code>[0-9_]</code> plus whatever is classified as alphanumeric in the Unicode character properties database. </p>\n\n<p>See also <a href=\"http://coding.derkeiler.com/Archive/Python/comp.lang.python/2004-05/2560.html\" rel=\"nofollow noreferrer\">http://coding.derkeiler.com/Archive/Python/comp.lang.python/2004-05/2560.html</a>.</p>\n",
+      "upVoteCount": 17,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14399,
+      "postId": 14389,
+      "body": "<p>\\X seems to be available as a generic word-character in some languages, it allows you to match a single character disregarding of how many bytes it takes up. Might be useful.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14420,
+      "postId": 14389,
+      "body": "<p>In Mastering Regular Expressions from Jeffrey Friedl (great book) it is mentioned that you could use \\p{Letter} which will match unicode stuff that is considered a letter.</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 5519872,
+      "postId": 14389,
+      "body": "<p>Python's re module doesn't support \\p{Letter} or \\X. However, the <a href=\"http://pypi.python.org/pypi/regex\" rel=\"noreferrer\">new regex implementation on PyPI</a> does.</p>\n",
+      "upVoteCount": 5,
+      "downVoteCount": 0
+    },
+    {
+      "id": 14630,
+      "postId": 14582,
+      "body": "<p>Unfortunately, Subversion is case-sensitive. This is due to the fact that files from Subversion can be checked out on both case-sensitive file systems (e.g., *nix) and case-insensitive file systems (e.g., Windows, Mac).</p>\n\n<p><a href=\"http://svn.apache.org/repos/asf/subversion/trunk/contrib/hook-scripts/case-insensitive.py\" rel=\"nofollow noreferrer\">This pre-commit hook script</a> may help you avoid problems when you check in files. If it doesn't solve your problem, my best suggestion is to write a little script to make sure that all extensions are lowercase and run it every time before you check in/check out. It'll be a PITA, but maybe your best bet.</p>\n",
+      "upVoteCount": 20,
+      "downVoteCount": 0
+    },
+    {
+      "id": 22328,
+      "postId": 14582,
+      "body": "<p>I use TortoiseSVN with VFP, and it mostly-seamlessly handles the case flipping. The only time it doesn't is if I have the file open in the IDE when I try to do the commit: the file lock VFP holds confuses it. Is this where your problem comes in, or are there other issues?</p>\n\n<p>I did a presentation at FoxForward last year about using VFP with Subversion: most of the presentation dealt with the command line, but there are a couple of slides at the end that have links to tools that help you work with Subversion in VFP. <a href=\"http://docs.google.com/Presentation?id=dfxkh6x4_3ghnqc4\" rel=\"nofollow noreferrer\">http://docs.google.com/Presentation?id=dfxkh6x4_3ghnqc4</a></p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 63075,
+      "postId": 14582,
+      "body": "<p>Kit, you comment above that VFP's binary-based source files are tough to work with in Subversion. The link I gave above mentions a couple of tools to make it easier, but the one I work with is Christof Wollenhaupt's TwoFox utility -- it converts a VFP project to text-only. You have to run it manually, but I don't have a problem with that.</p>\n\n<p><a href=\"http://www.foxpert.com/docs/cvs.en.htm\" rel=\"nofollow noreferrer\">http://www.foxpert.com/docs/cvs.en.htm</a></p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 581839,
+      "postId": 14582,
+      "body": "<p>I believe the random upper and lower case on the extensions isn't random at all.\nI remember testing on this. If you modify a program from the project manager.\nBy clicking on the modify button let's say. And then save the changes the extension is lower case. If you do a modify command from the command window and save the changes the extension is upper case. Apparently the coders at Microsoft didn't worry about the extension case being the same.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 1
+    },
+    {
+      "id": 2877580,
+      "postId": 14582,
+      "body": "<p>Windows does support case sensitivity, but you must send it the correct POSIX flags on CreateFile from the Windows API!  A registry key may need changed (SFU/Tools for Unix and Ultimate Windows 7 has this registry entry already set so windows supports case sensitive file names).</p>\n\n<p>Windows is designed off of Unix, but things such as Explorer.exe and other programs are designed to disallow case sensitivity for backwards compatibility and security (mostly when dealing with dos executing notepad.exe vs. NOTEPAD.EXE, where all caps is a virus or malware).</p>\n\n<p>But Vista+ has security attributes which makes this obsolete.</p>\n\n<p>TortiousSVN just doesn't support passing this posix flag while making and renaming files.</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 3391028,
+      "postId": 14582,
+      "body": "<p>Nope you sure can't. SVN is case-sensitive unless you were to rewrite the code somehow ... it <em>is</em> open-source.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 51399368,
+      "postId": 14582,
+      "body": "<p>We had a similar problem and I <strong>found a better solution</strong> than the ones exposed here, so I'm sharing it now:</p>\n\n<ul>\n<li><p>For <strong>commits done manualy</strong>, now TortoiseSVN fixes the case of the file names automatically: it renames the local files to match the case of the versioned files (just by opening the commit window in that path), so there should be <strong>no problem</strong> with that.</p></li>\n<li><p>For <strong>automated commits</strong> you cannot use TortoiseSVN, as it requires you to manually confirm the commit (it opens the commit window with a specific message, but you still have to click ok). But if you directly use Subversion (svn) to make an automated commit, then you will have the case-sensitive issue on that commit, as Subversion is still case-sensitive...</p></li>\n</ul>\n\n<p>How to solve this for automated commits? Well, I tried a mixed approach: creating a batch file called <code>FixCaseSensitiveFileNames.bat</code> that you may call passing the path you want to fix before the commit, for example: <code>call FixCaseSensitiveFileNames.bat C:\\MyRepo</code>. The batch file opens TortoiseSVN for a manual commit, and that automatically fixes the file names, but then it closes the commit window after a predefined pause, so you can continue with the automated commit with the case-sensitive file names already fixed. The pause is emulated with a local ping, and you can change the duration by changing the <code>-n</code> argument, which is the number of tries. If you don't make a long enough pause, it exist the risk to close the TortoiseSVN window before it makes its magic fix. Here it is <strong>the code of the batch file</strong>:</p>\n\n<pre><code>@echo off\nREM *** This BAT uses TortoiseSVN to fix the case-sensitive names of the files in Subversion\nREM *** Call it before an automated commit. The Tortoise commit fixes this issue for manual commits,\nREM *** so the trick is opening the commit window and close it automatically after a pause (with ping).\nREM *** %1 = path to be fixed\n\nstart TortoiseProc.exe /command:commit /path:\"%1\"\nping localhost -n 10 &gt;nul\ntaskkill /im TortoiseProc.exe\n</code></pre>\n\n<p>This totally solved the issue for our automated daily build process. The only problem I see is a window will open for a few seconds, which was not a problem for our daily build, but if that is a problem for you there could be workarounds too...</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 59732964,
+      "postId": 14582,
+      "body": "<p>TortoiseSVN has a <a href=\"https://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-rename.html#tsvn-dug-rename-repair\" rel=\"nofollow noreferrer\">Repairing File Renames</a> feature. It requires manual intervention and it actually issues a file rename operation to be committed but nonetheless addresses current use case by keeping file history.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 15691,
+      "postId": 15681,
+      "body": "<p>AFAIK, pretty much every OS X developer uses Xcode.</p>\n\n<p>That, and Interface Builder for creating the GUIs.</p>\n\n<p>FWIW, try to get hold of a copy of Hillegas's book, as it's a great introductory tutorial, and the reference Docs Apple provides really aren't.  (They are generally very good reference docs, however).</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 15697,
+      "postId": 15681,
+      "body": "<p>I'd suggest you pick a fun little product and dive in. If you're looking for a book I'd suggest <a href=\"https://rads.stackoverflow.com/amzn/click/com/0321503619\" rel=\"noreferrer\" rel=\"nofollow noreferrer\">Cocoa Programming for Max OSX</a> which is a very good introduction both to Objective-C and Cocoa.</p>\n\n<p>XCode is pretty much the de facto IDE and free with OSX. It should be on your original install DVD. It's good but not as good as Visual Studio (sorry, it's really not). </p>\n\n<p>As a long-time VS user I found the default XCode config a little odd and hard to adjust to, particularly the way a new floating window would open for every sourcefile. Some tweaks I found particularly helpful;</p>\n\n<ul>\n<li>Settings/General -> All-In-One (unifies editor/debugger window)</li>\n<li>Settings/General -> Open counterparts in same editor (single-window edit)</li>\n<li>Settings/Debugging - \"In Editor Debugger Controls\"</li>\n<li>Settings/Debugging - \"Auto Clear Debug Console\"</li>\n<li>Settings/Key-binding - lots of binding to match VS (Ctrl+F5/Shift+F5,Shift+Home, Shift+End etc)</li>\n</ul>\n\n<p>I find the debugger has some annoying issues such as breakpoints not correctly mapping to lines and exceptions aren't immediately trapped by the debugger. Nothing deal-breaking but a bit cumbersome.</p>\n\n<p>I would recommend that you make use of the new property syntax that was introduced for Objective-C 2.0. They make for a heck of a lot less typing in many many places. They're limited to OSX 10.5 only though (yeah, language features are tied to OS versions which is a bit odd). </p>\n\n<p>Also don't be fooled into downplaying the differences between C/C++ and Objective-C. They're very much related but ARE different languages. Try and start Objective-C without thinking about how you'd do X,Y,Z in C/C++. It'll make it a lot easier.</p>\n",
+      "upVoteCount": 19,
+      "downVoteCount": 1
+    },
+    {
+      "id": 15727,
+      "postId": 15681,
+      "body": "<p>The first document to read and digest is <a href=\"http://developer.apple.com/documentation/Cocoa/Conceptual/MemoryMgmt/MemoryMgmt.html\" rel=\"nofollow noreferrer\">the Mem management guide</a>, understand this before moving on. <a href=\"http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Introduction/chapter_1_section_1.html\" rel=\"nofollow noreferrer\">This</a> is a great guide to objective-c too. Infact the developer site at Apple is very good - but you would probably want to read the Hillegas book first.</p>\n\n<p>In regards to Xcode vs Visual Studio - they are different. I wouldn't say one is better than the other - Windows developers come over from VS and expect it to be the same. This is just an arrogant attitude and please don't fall into this crowd. Having used VS since the AppStudio days and Xcode for a year or so now, both have strengths and weaknesses. Xcode is something that out of the box (and especially when coming from VS) doesn't seem that good, but once you start using and understanding it - it becomes very powerful.</p>\n\n<p>Also, there are a lot more tools included with Xcode et al, such as Instruments and Shark that you simply can't get with VS, unless you open your wallet, and even then IMHO aren't as good.</p>\n\n<p>Anyway, good luck. I still enjoy C#, but Objective-C/Cocoa somehow makes programming fun again once you get into it...</p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 15737,
+      "postId": 15681,
+      "body": "<p>Cocoa is huge. The hardest part of learning how to write apps on Mac is learning Cocoa. By the way. You do not need to know ObjC (though it helps tons). You can write Cocoa apps with Python or Ruby (right in the IDE).</p>\n\n<p>I agree VS is a better IDE then Xcode. But if you throw in Interface Builder and all the other tools, I'm not so sure. Mac development is not about 1 giant IDE for everything. But VS is \"kinder\" on the developer then Xcode is. </p>\n\n<p>Also if you want to do cross platform apps look at <a href=\"http://www.realsoftware.com/products/realbasic/\" rel=\"nofollow noreferrer\">RealBasic</a>. A fine tool (Basic though. But it runs on Linux too.) You'd be surprised how many Mac apps are written with RB.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 1
+    },
+    {
+      "id": 15762,
+      "postId": 15681,
+      "body": "<p>I've heard the books currently out there are pretty out of date. The whole ecosystem seems to evolve very fast with dramatic changes made in every OS release.</p>\n\n<p>He wrote a <a href=\"http://andymatuschak.org/articles/2007/09/09/getting-started-with-cocoa-a-friendlier-approach\" rel=\"nofollow noreferrer\">tutorial</a> which pulls together some Apple documentation and other tutorials which should get you started. I think it covers the basics of using the IDE, writing simple apps, and then goes on to more advanced stuff.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 15763,
+      "postId": 15681,
+      "body": "<p>One other suggestion:  If you have feature or enhancement requests, or bugs that you've run into, be sure to file them at Apple's <a href=\"http://bugreport.apple.com/\" rel=\"nofollow noreferrer\">Bug Reporter</a>.  It's the best way for developers to communicate their needs to Apple, because every issue is tracked through the system.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 21407,
+      "postId": 15681,
+      "body": "<p>You might try the demo of <a href=\"http://macromates.com/\" rel=\"nofollow noreferrer\">textmate</a> and see how you like it for working with objective-c or any other type of text really.  It will import xcode project settings so you can still compile and run from textmate rather than having to go back to xcode. </p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 28928,
+      "postId": 15681,
+      "body": "<p>Xcode is the standard for editing source files, though you can use another editor in conjunction with the command line xcodebuild tool if you really want.  I used Vim for all my Cocoa editing before finally giving in to Xcode.  It's not the greatest IDE in the world, but it gets the job done, and the recent 3.x releases have had some nice improvements.</p>\n\n<p>The real power tool of Cocoa development is Interface Builder.  IB does not generate source code like many UI tools.  Instead it manipulates real Cocoa views, controls, and objects which it then bundles into an archive (nib) that is loaded by your program at runtime.  Most Cocoa programs use at least one nib file, and often many more.</p>\n\n<p>No matter what IDE/editor combination you choose for hacking on source files, I recommend using IB where you can.  Even if you're not a fan of other UI layout/generation tools, I suggest keeping an open mind, giving \"the Cocoa way\" a chance and at least learning what Interface Builder can do for your development process.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 36370,
+      "postId": 15681,
+      "body": "<p>I've been dabbling in Cocoa for the past couple years, and recently picked up Fritz Anderson's \"<a href=\"https://rads.stackoverflow.com/amzn/click/com/0321552636\" rel=\"nofollow noreferrer\" rel=\"nofollow noreferrer\">Xcode 3 Unleashed</a>.\" Highly recommended for getting into Xcode &mdash; especially with some of the big changes 3.0/Leopard brought.</p>\n\n<p>Don't forget Hillegass' defacto Cocoa bible, \"Cocoa Programming for Mac OS X - Third Edition.\"</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 37993,
+      "postId": 15681,
+      "body": "<p>@peter I don't know why you had trouble with getting a simple app working, right off the bat without doing anything your app gets a lot of benefits from the Cocoa framework. If you mean you were trying to do stuff like connect a button to an action and have it print a alert on screen or something like that then yes I could see where your going with it being difficult.</p>\n\n<p>The problem for me starting with Cocoa many years back is that it was so different from anything else that it had a little bit of a learning curve. Whereas many other systems are compile time oriented Cocoa is very dynamic and runtime oriented. Once you get past learning how actions hook up to classes it just becomes a matter of learning how the Cocoa frameworks work.</p>\n",
+      "upVoteCount": 0,
+      "downVoteCount": 0
+    },
+    {
+      "id": 38764,
+      "postId": 15681,
+      "body": "<p>Don't bother digging up your OSX DVD as they've released a new version (3.1) of XCode since then.</p>\n\n<p>First, you'll want to join <a href=\"https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/promo?source=ADCLOG&amp;code=ADCLOG-NEX\" rel=\"nofollow noreferrer\">Apple Developer Connection</a> (it's free, and you need it to access their version of MSDN) - it uses your Apple ID so if you've ever had one for the itunes store etc, it's that same username/password</p>\n\n<p>Once you've done that, click on downloads, then click on developer tools, to view <a href=\"https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/202/wo/5u4LJJZ7ZZWg2u6eB93on1lazji/4.1.17.2.1.3.3.1.1.1.1.0.3.3.3.3.1\" rel=\"nofollow noreferrer\">this page</a>, and go for the <a href=\"http://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/202/wa/download?path=%2FDeveloper_Tools%2Fxcode_3.1_developer_tools%2Fxcode31_2199_developerdvd.dmg&amp;wosid=5u4LJJZ7ZZWg2u6eB93on1lazji\" rel=\"nofollow noreferrer\">XCode 3.1 Developer DVD</a></p>\n",
+      "upVoteCount": 4,
+      "downVoteCount": 0
+    },
+    {
+      "id": 16120,
+      "postId": 16113,
+      "body": "<p>I use <a href=\"http://analog.cx\" rel=\"noreferrer\">Analog</a> because it's free, but it is rather dated now (wow, last release was 4 years ago!) and I'm sure it doesn't have as many fancy features as newer ones.</p>\n",
+      "upVoteCount": 5,
+      "downVoteCount": 0
+    },
+    {
+      "id": 16138,
+      "postId": 16113,
+      "body": "<p><a href=\"http://www.splunk.com/\" rel=\"noreferrer\">Splunk ></a> is great, and free.  It allows you to visualize and search all of your logs in real time. And it's all web based, so you can view your logs from just about anywhere.</p>\n",
+      "upVoteCount": 6,
+      "downVoteCount": 1
+    },
+    {
+      "id": 16280,
+      "postId": 16113,
+      "body": "<p>It seems that as javascript page-tagging becomes the more popular choice as a way of processing web stats, there's not as much work being done on log-based analysis tools anymore in the marketplace.  My office used to use a product called LiveStats.XSP. It wasn't the greatest tool by any means, but it did have some nice features.  It was recently bought by Microsoft and is no longer supported however. It abandoned log analysis turned into a proposed Google Analytics killer called <a href=\"http://www.good-together.co.uk/index.php/category/microsoft-gatineau/\" rel=\"nofollow noreferrer\">Microsoft Gatineau</a>, which supposedly is good at determining the demographics of your visitors, including age and gender (yeah sure...)</p>\n\n<p>When I was looking for log analysis software a while ago, I wanted to avoid anything that looked overly bloated and enterprisey, which is what most stuff seemed to be, focusing more on the marketing and advertising aspects of reports.   </p>\n\n<p>One thing you may want to look at is the new version of <a href=\"http://www.google.com/urchin/\" rel=\"nofollow noreferrer\">Urchin</a>, Urchin6 (<a href=\"http://www.google.com/urchin/features.html\" rel=\"nofollow noreferrer\">see features here</a>).  Urchin I believe was bought by Google a few years ago.  It's offered as a locally installed solution, and with it you have the option to use either page-tagging or log file analysis for any site that it monitors.  There also seems to be some interface ties between Google's own web-based Google Analytics and Urchin.  It's not free though, unfortunately, and I think you can only get it through authorized partners.</p>\n\n<p>It does all the standard logfile analysis stuff, everything is browser-based, the reports it offers are pretty deep and comprehensive, and it also seems to have a few bells and whistles that other services don't offer.  For example, I remember it being able to present a view of a web page it tracks with colored hot spots overlayed on top of it, based on how often users click on items on that area of the page.  Worth checking out the demo of it anyways.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 16696,
+      "postId": 16113,
+      "body": "<p>AWStats and Webalizer are both good and free (I think both free speech as well as free beer). I generally prefer the look of AWStats - it has a nice modern look whereas Webalizer looks like something created in about 1992.</p>\n\n<p>They both give roughly the same information which includes:</p>\n\n<ul>\n<li>Most frequently accessed pages</li>\n<li>Which hosts (IPs and Domain Names) visitors come from</li>\n<li>Proportion of users using different browsers</li>\n<li>Proportion of downloads of different file types</li>\n</ul>\n\n<p>All of this information is usually viewable on a hour by hour, day by day, month by month and year by year basis. Normally the raw data is available but also with bar charts and pie charts. Both AWStats and Webalizer will (I think) try and work out where your visitors come from by using services such as GeoIP, although I never bothered to set this up. Some also try to work out what order people have visited pages in and things like that - but that is very difficult to do so the results are guesses at the best.</p>\n\n<p>I generally find them both useful - even if just to get an overview of what is going on with my server and who is accessing it. They are both relatively easy to install - although I seem to remember Webalizer being a little easier than AWStats, and they both have varied configuration options to let you decide exactly what you want to get out of them.</p>\n\n<p>For more information see their sites at <a href=\"http://awstats.sourceforge.net/\" rel=\"noreferrer\">awstats.sourceforge.net/</a> and <a href=\"http://www.webalizer.org/\" rel=\"noreferrer\">http://www.webalizer.org/</a>.</p>\n\n<p>Hope that helps.</p>\n\n<p>Robin</p>\n",
+      "upVoteCount": 13,
+      "downVoteCount": 0
+    },
+    {
+      "id": 160478,
+      "postId": 16113,
+      "body": "<p>If you are looking for stats that are meant to be given to a customer and provide them with realistic data (not number of hits based on every file), then check out <a href=\"http://www.google.com/analytics\" rel=\"nofollow noreferrer\">Google Analytics</a>. Free and looks pretty.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 2
+    },
+    {
+      "id": 310454,
+      "postId": 16113,
+      "body": "<p>I typically do a search every 30 or so days for new projects for better stats. I currently (still) use AWStats (and JAWStats as I mentioned in another thread).</p>\n\n<p>One of the best things about AWStats when compared to it counterparts is ability to break up your datafiles to create reports by day, week, month, year or even hour using the <a href=\"http://www.taletellin.selmaalabama.com/awstats/docs/awstats_faq.html#DAILY\" rel=\"nofollow noreferrer\">databasebreak</a> feature.</p>\n\n<p>Why people are still using Webalizer and Analog (well, speed aside) is beyond me. At least in my experience they tend to bury as much information as they expose and I end up reading raw logs.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 677965,
+      "postId": 16113,
+      "body": "<p>I get Awstats and Webalizer with my web hosting account and I find that neither is accurate or very useful. The reported numbers are inflated by up to 1000%, because the tools don't properly identify bots and spiders. Here is a comparison of the Visits metric between three tools over the past 3 weeks (I think Awstats has only partial data for 3/23, and no data for today 3/24, which is why I did not include the numbers).</p>\n\n<pre><code>                            Google  Woopra  Awstats\nSunday, March 1, 2009           10      11      69\nMonday, March 2, 2009           13      14      85\nTuesday, March 3, 2009          13      14      96\nWednesday, March 4, 2009        21      28      91\nThursday, March 5, 2009         19      25     107\nFriday, March 6, 2009           12      10      88\nSaturday, March 7, 2009         12      14     100\nSunday, March 8, 2009           10      11      65\nMonday, March 9, 2009           13      14      78\nTuesday, March 10, 2009         17      13      96\nWednesday, March 11, 2009       18      16      87\nThursday, March 12, 2009        19      18      87\nFriday, March 13, 2009          12      13      66\nSaturday, March 14, 2009        11       7      52\nSunday, March 15, 2009          11      12      57\nMonday, March 16, 2009          13      15      92\nTuesday, March 17, 2009         24      22     102\nWednesday, March 18, 2009       18      16      79\nThursday, March 19, 2009        17      18      73\nFriday, March 20, 2009          16      11      70\nSaturday, March 21, 2009        24      26      67\nSunday, March 22, 2009         103     114     216\nMonday, March 23, 2009         232     223     117\n</code></pre>\n\n<p>I personally prefer Woopra over Google. While it is still in Beta, it can take a long time for your site to get approved, and it will probably be a paid service at some point, the real-time monitoring capabilities are amazing. The new custom reporting capabilities on Google Analytics are superior to Woopra, though. Woopra does not have any capabilties to produce printed reports</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 690148,
+      "postId": 16113,
+      "body": "<p>I'd go for awstats. I was getting my site usage reports from awstats for a while and then turned on Google Analytics to do this job as well. And, surprisingly, Google turned out to be rather unreliable.\nI get usually have no visits from a country like Finland and once I <em>knew for sure</em> a friend of mine visited the site from Finland and what happend? Awstats says - hey, you had a visit from Finland! And Google Analytics? I move my mouse over Finland and the bubble says \"visits: 0\". After that I could never quite make myself trust it again.</p>\n",
+      "upVoteCount": 5,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1833012,
+      "postId": 16113,
+      "body": "<p>Try out XpoLog log analysis for web servers it provide log analysis platform to anlyze multiple web and application servers for centrelized location and create automatic reports and monitors for applications health. find it at <a href=\"http://www.xpolog.com\" rel=\"nofollow noreferrer\">XpoLog log analysis</a></p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 8822112,
+      "postId": 16113,
+      "body": "<p>My old company always used <a href=\"http://www.weblogexpert.com/\" rel=\"nofollow\">WebLog Expert</a>. There is a free 'lite' version. Its still has on-going development and can be combined with geo-location databases if you use one of the paid versions. </p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 21240,
+      "postId": 20034,
+      "body": "<p>I don't work in the games industry, but it sounds to me like this will do the same thing for video games as the Quake and Half-Life engines did. That is they will promote getting young developers interested in the industry and promote development of indie games. </p>\n\n<p>From what I can tell, video game companies do not reuse most of their code, because if they do it implies that their new game is just a rehash of an old one. Everyone wants a cool new physics engine, better graphics, new ways to play the game. Most video game engines and frameworks are made for a specific scenario and thus are not very bendable to other situations. </p>\n\n<p>Maybe Darkstar will get it right though, but I kinda doubt it, since generalizing only works for so much.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 2
+    },
+    {
+      "id": 21263,
+      "postId": 20034,
+      "body": "<blockquote>\n  <p>From what I can tell, video game companies do not reuse most of their code, because if they do it implies that their new game is just a rehash of an old one.</p>\n</blockquote>\n\n<p>Um... if you're referring to the long tail of video game companies, maybe. Within a company that has had a series of successful games, there is usually some modicum of reuse. Major hardware changes can result in ditching a lot of work, but it really depends on the company.</p>\n",
+      "upVoteCount": 2,
+      "downVoteCount": 0
+    },
+    {
+      "id": 151218,
+      "postId": 20034,
+      "body": "<p>Sounds like useless tech to me. The MMO world is controlled by a few big game companies that already have their own tech in place. Indie game developers love trying to build MMO's and sometimes they do, but those games rarely gain traction. Larger companies breaking into the MMO world would probably license \"proven\" technology, or extend their own.</p>\n\n<p>Game companies reuse vast quantities of code from game to game. Most/many game companies have developed their own tech internally, and use it on every game they produce. Occasionally, they will do something like replace their physics code with a 3rd party physics engine. If their internal code base (game engine, design tools, internal pipeline) starts to age too much, or become unwieldy, they might switch to one of the big game engines like Unreal. Even then, major chunks of code will continue to be re-used from game to game.</p>\n",
+      "upVoteCount": 3,
+      "downVoteCount": 0
+    },
+    {
+      "id": 159845,
+      "postId": 20034,
+      "body": "<p>It sounds like fun to design and code, but I think it ultimately comes down to <a href=\"http://www.joelonsoftware.com/articles/fog0000000018.html\" rel=\"nofollow noreferrer\">useless abstractions</a> (to steal from Joel).</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 160228,
+      "postId": 20034,
+      "body": "<p>It's very common for games to reuse \"game engines,\" even those from third-parties. This sounds like another step in that direction.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 485304,
+      "postId": 20034,
+      "body": "<p><strong>Edit: This was written before Oracle bought Sun and started a rampage to kill everything that does not make them a billion $ per day. See the comments for an OSS Fork.</strong> <em>I still stand by my opinion that stuff like that (MMO Middleware) is realistic, you just need a company that doesn't suck behind it.</em></p>\n\n<p>The Market may be dominated by few large games, but that does not mean that there is not a lot of room for more niche games. Lets face it: If you want to reach 100.000+ players, you're ending up building your own technology stack, at least for the critical core. That's what CCP did for EVE Online (<a href=\"http://myeve.eve-online.com/devblog.asp?a=blog&amp;bid=584\" rel=\"noreferrer\">StacklessIO</a>), that's what Blizzard did for World of Warcraft (although they do use many third-party libraries), that's what Mythic did for Warhammer Online (although they are based on Gamebryo).</p>\n\n<p>However, if you aim to be a small, niche MMO (like the dozens of Free-to-Play/Itemshop MMOs), then getting the Network stuff right is just insanely hard, data consistency is even harder and scalability is the biggest b*tch.</p>\n\n<p>But game technology is not your only problem - you also need to tackle Billing. Credit Card only? Have fun selling in Germany then, people there want ELV. That's where you need a reliable billing provider, but you still need to wire in the billing application with your accounts to make sure that accounts are blocked/reactivated when the billing fails.</p>\n\n<p>There are some companies already offering \"MMO Infratructure Services\" (i.e. <a href=\"http://www.e-eis.com/cms/front_content.php?changelang=2\" rel=\"noreferrer\">Arvato's EEIS</a>), but the bottom line is: Stuff like Project Darkstar IS realistic, but assuming that you can build a Multi-Billion-MMO entirely on a Third Party Stack is optimistic, possibly idealistic.</p>\n\n<p>But then again, entirely inventing all of the technology is even more stupid - use the Third Party stuff that you need (i.e. Billing, Font Rendering, Audio Output...), but <a href=\"http://www.codinghorror.com/blog/archives/001172.html\" rel=\"noreferrer\">write the stuff that really makes or breaks your business</a> (i.e. Network stack, User interface etc.) on your own. (Note: Jeff's posting may be <a href=\"http://damilare.net/random-talks/dare-obasanjo-vs-jeff-atwood-on-html-validation/\" rel=\"noreferrer\">a bit flawed</a>, but the overall direction is correct IMHO.)</p>\n\n<p>Addendum: Also, the game industry does license and reuse engines a lot. The most prominent game Engines are the <a href=\"http://en.wikipedia.org/wiki/Unreal_Engine\" rel=\"noreferrer\">Unreal Engine</a>, <a href=\"http://en.wikipedia.org/wiki/Source_Engine\" rel=\"noreferrer\">Source Engine</a> and <a href=\"http://en.wikipedia.org/wiki/Id_tech\" rel=\"noreferrer\">id Tech</a>, which fuel dozens, if not hundreds of games. But there are some lesser-known (outside of the industry) engines. There is <a href=\"http://en.wikipedia.org/wiki/Gamebryo\" rel=\"noreferrer\">Gamebryo</a>, the Middleware behind games like Civilization 4 and Fallout 3, there was <a href=\"http://en.wikipedia.org/wiki/RenderWare\" rel=\"noreferrer\">RenderWare</a> that is now only EA-in-House, but used in games like Battlefield 2 or The Sims 3. There is the open source <a href=\"http://www.ogre3d.org/\" rel=\"noreferrer\">Ogre3d</a>, which was used in <a href=\"http://www.dtp-entertainment.com/en/games/game_detail.php?id=2973&amp;landid=1\" rel=\"noreferrer\">some</a> commercial <a href=\"http://www.venetica-game.com/\" rel=\"noreferrer\">titles</a>. If you're just looking for Sound, there's stuff like <a href=\"http://www.fmod.org/\" rel=\"noreferrer\">FMOD</a> or if you want to do font-rendering, why not give <a href=\"http://www.freetype.org/\" rel=\"noreferrer\">FreeType</a> a spin?</p>\n\n<p>What I'm saying is: Third-Party Engines/Middleware do exist, and they ARE being successfully used since more than a decade (I know for sure that id's Wolfenstein Engine was licensed to other companies, and that was 1992), even by big companies in multi-million-dollar titles. The important thing is the support, because a good engine with no help in case of an issue is pretty much worthless or at least very expensive if the developer has to spend their game-development-time with unneccessary debugging of the Engine.</p>\n\n<p>If the Darkstar folks manage to get the support side right and 2 or 3 higher profile titles out, I do believe it could succeed in opening the MMO market to a lot more smaller developers and indies.</p>\n",
+      "upVoteCount": 26,
+      "downVoteCount": 0
+    },
+    {
+      "id": 1148375,
+      "postId": 20034,
+      "body": "<p>I think it's a great thing to do.\nDevelopers not having to worry about all these things that project darkstar takes care of, and it's very easy to use.\nBut it's not all about just getting it to work and not having to learn everything about internet-communication, It's also about performance. Project darkstar has been under development for over 2 years and it keeps getting better,faster and more robust.</p>\n\n<p>I think it will be hard and probably not worth the time to write these things when aiming at a specific game, when technologies like this can be used instead. And you also get nice information during runtime telling you where in an application there's a cause of slowdown or deadlocks so you can improve that.</p>\n",
+      "upVoteCount": 1,
+      "downVoteCount": 0
+    },
+    {
+      "id": 20678,
+      "postId": 20675,
+      "body": "<ul>\n<li><a href=\"http://www.w3schools.com/Vbscript/func_int.asp\" rel=\"noreferrer\">Int()</a></li>\n</ul>\n\n<blockquote>\n  <p>The Int function returns the integer part of a specified number.</p>\n</blockquote>\n\n<ul>\n<li><a href=\"http://www.w3schools.com/VBScript/func_cint.asp\" rel=\"noreferrer\">CInt()</a></li>\n</ul>\n\n<blockquote>\n  <p>The CInt function converts an expression to type Integer.</p>\n</blockquote>\n\n<p>And the best answer comes from <a href=\"http://msdn.microsoft.com/en-us/library/fctcwhw9(VS.85).aspx\" rel=\"noreferrer\">MSDN</a></p>\n\n<blockquote>\n  <p>CInt differs from the Fix and Int functions, which truncate, rather than round, the fractional part of a number. When the fractional part is exactly 0.5, the CInt function always rounds it to the nearest even number. For example, 0.5 rounds to 0, and 1.5 rounds to 2.</p>\n</blockquote>\n",
+      "upVoteCount": 38,
+      "downVoteCount": 0
+    }
+  ]
+}
